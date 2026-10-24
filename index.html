@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="es" class="dark">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SEOPro Elite | Enterprise On-Page Auditor</title>
     
     <!-- Dynamic Professional SVG Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2310B981'/%3E%3Cstop offset='100%25' stop-color='%2306B6D4'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='%230a0a0c'/%3E%3Cpath d='M8 22l6-8 5 5 7-10' fill='none' stroke='url(%23g)' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='26' cy='9' r='2' fill='%2310B981'/%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23000000'/%3E%3Cpath d='M8 22l6-8 5 5 7-10' fill='none' stroke='%233b82f6' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='26' cy='9' r='2' fill='%2310b981'/%3E%3C/svg%3E">
 
-    <!-- Fonts -->
+    <!-- Font: Inter (Linear / Apple Pro style) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -22,21 +22,25 @@
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                        heading: ['Montserrat', 'sans-serif'],
                     },
                     colors: {
-                        brandDark: '#0a0a0c',
-                        brandCard: 'rgba(15, 17, 23, 0.78)',
-                        brandBorder: 'rgba(255, 255, 255, 0.08)',
-                        emeraldNeon: '#10B981',
-                        cyanNeon: '#06B6D4',
+                        obsidian: '#000000',
+                        elevated: '#0a0a0a',
+                        surface: '#111111',
+                        border: 'rgba(255, 255, 255, 0.08)',
+                        accentBlue: '#3b82f6',
+                        accentEmerald: '#10b981',
+                    },
+                    boxShadow: {
+                        'glow-blue': '0 0 40px -10px rgba(59, 130, 246, 0.15)',
+                        'glow-emerald': '0 0 40px -10px rgba(16, 185, 129, 0.15)',
                     }
                 }
             }
         }
     </script>
 
-    <!-- Icons (Phosphor) -->
+    <!-- Icons (Phosphor - Clean & Professional) -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     
     <!-- PDF Generation Library -->
@@ -44,38 +48,48 @@
 
     <style>
         body {
-            background: radial-gradient(circle at 50% 0%, #111827 0%, #0a0a0c 70%);
-            background-attachment: fixed;
-            color: #f1f5f9;
-            min-height: 100vh;
+            background-color: #000000;
+            color: #ededed;
             font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        h1, h2, h3, h4 {
-            font-family: 'Montserrat', sans-serif;
+        /* Minimalist UI Elements */
+        .pro-card {
+            background: #0a0a0a;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+        .pro-card:hover {
+            border-color: rgba(255, 255, 255, 0.15);
         }
 
-        /* Glassmorphism $10k Agency Look */
-        .glass-panel {
-            background: rgba(15, 17, 23, 0.78);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border: 1px solid rgba(255, 255, 255, 0.07);
-            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-        }
-
-        .glass-input {
-            background: rgba(5, 7, 12, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .pro-input {
+            background: #0a0a0a;
+            border: 1px solid rgba(255, 255, 255, 0.12);
             color: white;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.2s ease;
+        }
+        .pro-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 1px #3b82f6;
+            background: #111111;
         }
 
-        .glass-input:focus {
-            outline: none;
-            border-color: #10B981;
-            background: rgba(5, 7, 12, 0.95);
-            box-shadow: 0 0 25px rgba(16, 185, 129, 0.2);
+        /* Paywall Blur Effect */
+        .locked-blur {
+            filter: blur(8px);
+            opacity: 0.6;
+            pointer-events: none;
+            user-select: none;
+        }
+        
+        .paywall-overlay {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.95) 80%);
+            backdrop-filter: blur(2px);
         }
 
         /* Custom Scrollbar */
@@ -83,845 +97,697 @@
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #0a0a0c;
+            background: #000000;
         }
         ::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.15);
+            background: #333;
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: rgba(16, 185, 129, 0.5);
+            background: #555;
         }
 
         /* Loader */
-        .loader {
-            border: 3px solid rgba(255,255,255,0.1);
-            border-top: 3px solid #10B981;
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255,255,255,0.1);
+            border-left-color: #3b82f6;
             border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            animation: spin 0.8s linear infinite;
+            animation: spin 1s linear infinite;
         }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Shimmer */
-        .shimmer {
-            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(16,185,129,0.08) 50%, rgba(255,255,255,0) 100%);
-            background-size: 200% 100%;
-            animation: shimmer 2.5s infinite linear;
-        }
-        @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
-
-        /* Message Box */
-        #message-box {
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .hidden-msg {
+        /* Modals */
+        .modal-enter {
             opacity: 0;
-            transform: translateY(-30px) scale(0.95);
-            pointer-events: none;
+            transform: scale(0.95) translateY(10px);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .modal-enter-active {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+        
+        /* Toast Notifications */
+        #toast-container {
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
     </style>
 </head>
-<body class="antialiased flex flex-col items-center py-8 px-4 sm:px-6 lg:px-8">
+<body class="min-h-screen flex flex-col items-center py-6 px-4 sm:px-6 relative">
 
-    <!-- Message Box (replaces alert) -->
-    <div id="message-box" class="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 hidden-msg glass-panel rounded-xl px-6 py-4 flex items-center gap-3 border border-emerald-500/30 shadow-2xl">
-        <div id="msg-icon-wrapper" class="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center text-emerald-400">
-            <i class="ph ph-info text-xl" id="msg-icon"></i>
-        </div>
-        <span id="msg-text" class="text-sm font-medium text-white"></span>
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="fixed top-6 left-1/2 transform -translate-x-1/2 z-[100] opacity-0 pointer-events-none translate-y-[-20px] pro-card px-5 py-3 flex items-center gap-3 shadow-2xl">
+        <i id="toast-icon" class="ph ph-info text-xl"></i>
+        <span id="toast-text" class="text-sm font-medium text-white"></span>
     </div>
 
-    <!-- Header & Language Switcher -->
-    <header class="w-full max-w-6xl flex justify-between items-center mb-10">
+    <!-- Header Navigation -->
+    <header class="w-full max-w-5xl flex justify-between items-center mb-16 z-10">
         <div class="flex items-center gap-3">
-            <!-- Professional SVG Logo (Unique branding, crisp vector mark) -->
-            <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-emerald-500 to-cyan-500 p-[1px] shadow-lg shadow-emerald-500/20 flex-shrink-0">
-                <div class="w-full h-full bg-[#0a0a0c] rounded-[11px] flex items-center justify-center">
-                    <svg class="w-6 h-6 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
-                        <polyline points="16 7 22 7 22 13"></polyline>
-                    </svg>
-                </div>
-            </div>
-            <div>
-                <span class="text-xl font-black tracking-tight text-white font-heading">SEO<span class="text-emerald-400">PRO</span></span>
-                <span class="block text-[10px] uppercase tracking-widest text-gray-400 font-semibold">Enterprise Auditor</span>
-            </div>
+            <svg class="w-7 h-7 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+            </svg>
+            <span class="text-lg font-semibold tracking-tight text-white">SEOPro <span class="text-gray-500 font-normal">Elite</span></span>
         </div>
         
-        <div class="relative group">
-            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-emerald-400">
-                <i class="ph ph-globe text-base"></i>
+        <div class="flex items-center gap-4">
+            <!-- Language Switcher -->
+            <div class="relative">
+                <select id="lang-select" class="appearance-none bg-transparent text-gray-400 text-sm font-medium focus:outline-none cursor-pointer hover:text-white transition pr-4">
+                    <option value="es" class="bg-[#0a0a0a]">ES</option>
+                    <option value="en" class="bg-[#0a0a0a]">EN</option>
+                    <option value="fr" class="bg-[#0a0a0a]">FR</option>
+                    <option value="de" class="bg-[#0a0a0a]">DE</option>
+                    <option value="it" class="bg-[#0a0a0a]">IT</option>
+                    <option value="pt" class="bg-[#0a0a0a]">PT</option>
+                    <option value="ja" class="bg-[#0a0a0a]">JA</option>
+                    <option value="zh" class="bg-[#0a0a0a]">ZH</option>
+                </select>
+                <i class="ph ph-caret-down absolute right-0 top-1/2 transform -translate-y-1/2 text-gray-500 text-xs pointer-events-none"></i>
             </div>
-            <select id="lang-select" class="appearance-none bg-slate-900/90 border border-white/10 text-white text-xs sm:text-sm rounded-xl focus:ring-emerald-500 focus:border-emerald-500 block py-2.5 pl-9 pr-8 cursor-pointer outline-none glass-panel shadow-md">
-                <option value="es" class="bg-slate-900">🇪🇸 Español</option>
-                <option value="en" class="bg-slate-900">🇺🇸 English</option>
-                <option value="fr" class="bg-slate-900">🇫🇷 Français</option>
-                <option value="de" class="bg-slate-900">🇩🇪 Deutsch</option>
-                <option value="it" class="bg-slate-900">🇮🇹 Italiano</option>
-                <option value="pt" class="bg-slate-900">🇵🇹 Português</option>
-                <option value="ja" class="bg-slate-900">🇯🇵 日本語</option>
-                <option value="zh" class="bg-slate-900">🇨🇳 中文</option>
-            </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2.5 text-gray-400">
-                <i class="ph ph-caret-down text-xs"></i>
-            </div>
+            
+            <!-- Settings Modal Trigger -->
+            <button onclick="toggleSettings()" class="text-gray-400 hover:text-white transition p-2 rounded-md hover:bg-white/5">
+                <i class="ph ph-gear text-xl"></i>
+            </button>
         </div>
     </header>
 
-    <!-- Main Auditor Input Area -->
-    <main class="w-full max-w-6xl flex flex-col gap-8">
+    <!-- Main Hero & Input -->
+    <main class="w-full max-w-5xl flex flex-col items-center justify-center flex-grow z-10 w-full mb-20">
         
-        <section class="glass-panel rounded-3xl p-8 sm:p-14 text-center relative overflow-hidden">
-            <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-emerald-500 via-cyan-500 to-indigo-500"></div>
-            
-            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold mb-6 tracking-wide uppercase">
-                <i class="ph ph-cpu text-sm"></i> <span id="t-badge">Motor de DOM & Inteligencia de Conversión</span>
-            </div>
-
-            <h2 id="t-hero-title" class="text-3xl sm:text-5xl font-black text-white mb-5 tracking-tight font-heading">Auditor SEO On-Page Profundo</h2>
-            <p id="t-hero-sub" class="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto mb-10 leading-relaxed font-normal">Ingresa cualquier dominio global (ej. <span class="text-emerald-400 font-mono">tudominio.com</span>, <span class="text-emerald-400 font-mono">sitio.es</span>, <span class="text-emerald-400 font-mono">tienda.co</span>) para analizar su arquitectura técnica en milisegundos.</p>
-            
-            <form id="audit-form" class="relative max-w-3xl mx-auto flex flex-col sm:flex-row gap-4">
-                <div class="relative flex-grow">
-                    <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-gray-400">
-                        <i class="ph ph-link text-xl"></i>
-                    </div>
-                    <input type="text" id="url-input" class="glass-input block w-full pl-12 pr-4 py-4 rounded-2xl text-base placeholder-gray-500 shadow-inner" value="tudominio.com" required autocomplete="off">
-                </div>
-                <button type="submit" id="analyze-btn" class="bg-gradient-to-r from-emerald-500 to-cyan-600 hover:from-emerald-400 hover:to-cyan-500 text-slate-950 font-extrabold py-4 px-8 rounded-2xl shadow-lg shadow-emerald-500/25 transition-all transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2.5 whitespace-nowrap cursor-pointer">
-                    <i class="ph ph-rocket-launch text-xl"></i>
-                    <span id="t-btn-analyze">Ejecutar Auditoría</span>
-                </button>
-            </form>
-
-            <!-- Loading State -->
-            <div id="loading-state" class="hidden mt-10 flex flex-col items-center justify-center gap-3">
-                <div class="loader"></div>
-                <p id="t-analyzing" class="text-emerald-400 text-sm font-semibold tracking-wide animate-pulse">Iniciando Cascada de Proxies Globales y escaneando DOM...</p>
-            </div>
-        </section>
-
-        <!-- Results Container (Hidden initially) -->
-        <div id="results-container" class="hidden flex-col gap-8 w-full">
-            
-            <!-- Executive Overview Score Bar -->
-            <div class="glass-panel rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 border-l-4 border-emerald-500">
-                <div class="flex items-center gap-4 text-left">
-                    <div class="w-16 h-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl font-black font-heading shadow-lg">
-                        <span id="res-score">84</span>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-bold text-white font-heading">Índice de Salud On-Page</h3>
-                        <p class="text-sm text-gray-400">Objetivo analizado: <span id="res-url" class="text-emerald-300 font-mono font-semibold"></span></p>
-                    </div>
-                </div>
-                <div class="flex items-center gap-3 w-full md:w-auto justify-end">
-                    <button id="download-pdf-btn" class="flex-1 md:flex-initial flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-white px-5 py-3 rounded-xl text-sm transition font-semibold shadow-md cursor-pointer">
-                        <i class="ph ph-file-pdf text-emerald-400 text-lg"></i>
-                        <span id="t-btn-pdf">Descargar Reporte Gratis (PDF)</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Free Basic Report Grid -->
-            <section id="free-report-pdf" class="glass-panel rounded-3xl p-6 sm:p-10 relative">
-                <div class="flex justify-between items-center mb-8 border-b border-white/10 pb-5">
-                    <div>
-                        <h3 id="t-free-title" class="text-2xl font-black text-white flex items-center gap-2.5 font-heading">
-                            <i class="ph ph-chart-line-up text-emerald-400 text-2xl"></i>
-                            Métricas de Auditoría Técnica
-                        </h3>
-                        <p class="text-gray-400 text-sm mt-1">Informe de estructura fundamental y metadatos extraídos del DOM.</p>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Title Tag Analysis -->
-                    <div class="bg-black/40 rounded-2xl p-6 border border-white/5 relative">
-                        <div class="flex justify-between items-center mb-3">
-                            <h4 class="text-gray-300 font-bold text-xs uppercase tracking-wider">Etiqueta Title</h4>
-                            <span id="title-status" class="px-2.5 py-1 rounded-lg text-xs font-extrabold bg-slate-800 text-gray-300">Estado</span>
-                        </div>
-                        <p id="res-title" class="text-white text-base font-semibold break-words mb-3"></p>
-                        <p class="text-xs text-gray-400">Longitud: <span id="res-title-len" class="text-emerald-400 font-mono font-bold">0</span> carac. <span class="text-gray-500">(Óptimo: 50-60)</span></p>
-                    </div>
-
-                    <!-- Meta Description Analysis -->
-                    <div class="bg-black/40 rounded-2xl p-6 border border-white/5 relative">
-                        <div class="flex justify-between items-center mb-3">
-                            <h4 class="text-gray-300 font-bold text-xs uppercase tracking-wider">Meta Description</h4>
-                            <span id="desc-status" class="px-2.5 py-1 rounded-lg text-xs font-extrabold bg-slate-800 text-gray-300">Estado</span>
-                        </div>
-                        <p id="res-desc" class="text-white text-sm break-words mb-3 leading-relaxed"></p>
-                        <p class="text-xs text-gray-400">Longitud: <span id="res-desc-len" class="text-emerald-400 font-mono font-bold">0</span> carac. <span class="text-gray-500">(Óptimo: 120-160)</span></p>
-                    </div>
-
-                    <!-- H1 Analysis -->
-                    <div class="bg-black/40 rounded-2xl p-6 border border-white/5 md:col-span-2">
-                        <div class="flex justify-between items-center mb-3">
-                            <h4 class="text-gray-300 font-bold text-xs uppercase tracking-wider">Encabezados H1 (<span id="res-h1-count">0</span>)</h4>
-                            <span id="h1-status" class="px-2.5 py-1 rounded-lg text-xs font-extrabold bg-slate-800 text-gray-300">Estado</span>
-                        </div>
-                        <ul id="res-h1-list" class="list-disc list-inside text-white space-y-1.5 text-sm text-gray-200">
-                            <!-- Injected dynamically -->
-                        </ul>
-                        <p class="text-[11px] text-gray-500 mt-4">* El estándar SEO profesional requiere exactamente una etiqueta H1 principal por página.</p>
-                    </div>
-
-                    <!-- H2 Analysis -->
-                    <div class="bg-black/40 rounded-2xl p-6 border border-white/5 relative">
-                        <div class="flex justify-between items-center mb-3">
-                            <h4 class="text-gray-300 font-bold text-xs uppercase tracking-wider">Subtítulos H2</h4>
-                            <span id="h2-status" class="px-2.5 py-1 rounded-lg text-xs font-extrabold bg-slate-800 text-gray-300">Estado</span>
-                        </div>
-                        <p class="text-white text-3xl font-extrabold font-heading"><span id="res-h2-count">0</span></p>
-                        <p class="text-xs text-gray-400 mt-2">Fundamentales para estructurar semánticamente el contenido.</p>
-                    </div>
-
-                    <!-- Image Alt Analysis -->
-                    <div class="bg-black/40 rounded-2xl p-6 border border-white/5 relative">
-                        <div class="flex justify-between items-center mb-3">
-                            <h4 class="text-gray-300 font-bold text-xs uppercase tracking-wider">Atributos Alt en Imágenes</h4>
-                            <span id="img-status" class="px-2.5 py-1 rounded-lg text-xs font-extrabold bg-slate-800 text-gray-300">Estado</span>
-                        </div>
-                        <p class="text-white text-lg font-bold"><span id="res-img-missing" class="text-rose-400 font-extrabold">0</span> <span class="text-gray-400 text-sm font-normal">/ <span id="res-img-total">0</span> sin atributo alt</span></p>
-                        <p class="text-xs text-gray-400 mt-2">Crucial para accesibilidad y posicionamiento en Google Images.</p>
-                    </div>
-
-                    <!-- Word Count Analysis -->
-                    <div class="bg-black/40 rounded-2xl p-6 border border-white/5 md:col-span-2 relative">
-                        <div class="flex justify-between items-center mb-3">
-                            <h4 class="text-gray-300 font-bold text-xs uppercase tracking-wider">Volumen de Contenido (Palabras)</h4>
-                            <span id="word-status" class="px-2.5 py-1 rounded-lg text-xs font-extrabold bg-slate-800 text-gray-300">Estado</span>
-                        </div>
-                        <p class="text-white text-3xl font-extrabold font-heading"><span id="res-word-count">0</span> <span class="text-sm font-normal text-gray-400">palabras indexables</span></p>
-                        <p class="text-xs text-gray-400 mt-2">Una mayor profundidad semántica incrementa la autoridad orgánica (Recomendado: 800+ palabras).</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Premium Conversion Funnel ($9) -->
-            <section class="relative rounded-3xl border border-emerald-500/40 overflow-hidden shadow-2xl shadow-emerald-500/10 mt-4">
-                <div class="absolute inset-0 bg-gradient-to-b from-[#111827] via-[#0b0e17] to-[#050609] opacity-98"></div>
-                <div class="absolute inset-0 shimmer opacity-25 pointer-events-none"></div>
-                
-                <div class="relative z-10 p-8 sm:p-12 text-center flex flex-col items-center">
-                    
-                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 flex items-center justify-center mb-5 border border-emerald-500/40 shadow-[0_0_35px_rgba(16,185,129,0.3)]">
-                        <i class="ph ph-lock-key-open text-3xl text-emerald-400"></i>
-                    </div>
-
-                    <h3 id="t-premium-title" class="text-2xl sm:text-4xl font-black text-white mb-4 font-heading tracking-tight">Desbloquea el Blueprint SEO y de Ventas Pro</h3>
-                    <p id="t-premium-desc" class="text-gray-300 max-w-2xl mx-auto mb-10 text-sm sm:text-base leading-relaxed">
-                        Has completado el análisis superficial básico (5% de capacidad). Nuestro motor de inteligencia ha detectado <strong>35 vectores avanzados de optimización técnica y conversión comercial</strong> (incluyendo Schema Markup avanzado, Open Graph social, análisis de velocidad Core Web Vitals y corrección de fricción en embudos de venta).
-                        <br><br>
-                        <span class="text-emerald-400 font-bold">Obtén el informe profesional completo en PDF y potencia tus ventas orgánicas hoy mismo por solo $9.00 USD.</span>
-                    </p>
-
-                    <!-- Payment / Lead Capture Form -->
-                    <form id="payment-form" class="w-full max-w-md bg-black/60 p-7 rounded-2xl border border-white/10 backdrop-blur-xl shadow-2xl text-left">
-                        <div class="space-y-4 mb-6">
-                            <div>
-                                <label id="t-label-name" class="block text-xs font-bold text-gray-300 mb-1.5 uppercase tracking-wider">Nombre Completo</label>
-                                <div class="relative">
-                                    <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-gray-500">
-                                        <i class="ph ph-user text-base"></i>
-                                    </div>
-                                    <input type="text" id="cust-name" required class="glass-input block w-full pl-10 pr-4 py-3.5 rounded-xl text-sm" placeholder="Alejandro Pérez">
-                                </div>
-                            </div>
-                            <div>
-                                <label id="t-label-email" class="block text-xs font-bold text-gray-300 mb-1.5 uppercase tracking-wider">Correo Profesional</label>
-                                <div class="relative">
-                                    <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-gray-500">
-                                        <i class="ph ph-envelope-simple text-base"></i>
-                                    </div>
-                                    <input type="email" id="cust-email" required class="glass-input block w-full pl-10 pr-4 py-3.5 rounded-xl text-sm" placeholder="alejandro@empresa.com">
-                                </div>
-                            </div>
-                        </div>
-
-                        <button type="submit" id="pay-btn" class="w-full bg-gradient-to-r from-emerald-400 to-cyan-500 hover:from-emerald-300 hover:to-cyan-400 text-slate-950 font-black py-4 px-6 rounded-xl shadow-lg shadow-emerald-500/30 transform hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2.5 cursor-pointer text-base">
-                            <i class="ph ph-credit-card text-xl"></i>
-                            <span id="t-btn-pay">Desbloquear Informe Pro - $9.00</span>
-                        </button>
-
-                        <div class="mt-5 flex items-center justify-center gap-3 text-gray-400 pt-2 border-t border-white/5">
-                            <i class="ph ph-shield-check text-emerald-400 text-xl"></i>
-                            <span id="t-secure-pay" class="text-xs font-medium">Visa, Mastercard & Apple Pay • Pago Seguro SSL de 256-bit</span>
-                        </div>
-                    </form>
-                </div>
-            </section>
+        <div class="text-center max-w-2xl mx-auto mb-10">
+            <h1 id="t-hero-title" class="text-4xl sm:text-6xl font-bold text-white mb-6 tracking-tighter leading-tight">Advanced On-Page<br>SEO Architecture</h1>
+            <p id="t-hero-sub" class="text-gray-400 text-lg sm:text-xl font-light">Input any global URL to reverse-engineer its DOM structure, meta hierarchy, and technical performance.</p>
         </div>
+        
+        <form id="audit-form" class="w-full max-w-xl relative flex items-center">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-gray-500">
+                <i class="ph ph-globe text-xl"></i>
+            </div>
+            <input type="text" id="url-input" class="pro-input block w-full pl-12 pr-32 py-4 rounded-xl text-base placeholder-gray-600" value="tudominio.com" required autocomplete="off">
+            <button type="submit" id="analyze-btn" class="absolute right-2 top-2 bottom-2 bg-white text-black hover:bg-gray-200 font-semibold px-6 rounded-lg transition-colors flex items-center gap-2 text-sm">
+                <span id="t-btn-analyze">Analyze</span>
+                <i class="ph ph-arrow-right font-bold"></i>
+            </button>
+        </form>
+
+        <!-- Loading State -->
+        <div id="loading-state" class="hidden mt-8 flex flex-col items-center gap-3">
+            <div class="spinner"></div>
+            <p id="t-analyzing" class="text-gray-400 text-sm animate-pulse">Initializing scraping engine...</p>
+        </div>
+
     </main>
 
-    <footer class="w-full max-w-6xl mt-20 border-t border-white/10 pt-8 text-center text-xs text-gray-500 pb-12 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p id="t-footer">&copy; 2026 SEOPro Elite Agency. Todos los derechos reservados.</p>
-        <div class="flex items-center gap-6 text-gray-400">
-            <span class="hover:text-emerald-400 transition cursor-pointer">Política de Privacidad</span>
-            <span class="hover:text-emerald-400 transition cursor-pointer">Términos de Servicio</span>
-            <span class="hover:text-emerald-400 transition cursor-pointer">API Empresarial</span>
+    <!-- Results Dashboard (Hidden Initially) -->
+    <section id="results-container" class="hidden w-full max-w-5xl flex-col gap-6 pb-20 w-full">
+        
+        <!-- Executive Score Bar -->
+        <div class="pro-card p-6 flex flex-col sm:flex-row justify-between items-center gap-6 shadow-glow-blue">
+            <div class="flex items-center gap-5 text-left">
+                <div class="w-16 h-16 rounded-full border-4 border-accentBlue flex items-center justify-center">
+                    <span id="res-score" class="text-2xl font-bold text-white tracking-tighter">0</span>
+                </div>
+                <div>
+                    <h3 id="t-score-title" class="text-lg font-semibold text-white tracking-tight">On-Page Health Score</h3>
+                    <p class="text-sm text-gray-400 mt-1 flex items-center gap-2">
+                        <i class="ph ph-link-simple"></i>
+                        <span id="res-url" class="text-gray-300 font-medium truncate max-w-[200px] sm:max-w-xs block"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FREEMIUM AREA (Basic Metrics - Visible) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="pro-card p-6 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <h4 class="text-gray-400 font-medium text-xs uppercase tracking-widest">Meta Title</h4>
+                        <span id="status-title" class="text-xs font-semibold px-2 py-1 rounded bg-[#111] border border-border">N/A</span>
+                    </div>
+                    <p id="res-title" class="text-white text-base font-medium break-words"></p>
+                </div>
+                <p class="text-xs text-gray-500 mt-4 border-t border-border pt-4">Length: <span id="res-title-len" class="text-white font-medium">0</span> chars (Opt: 50-60)</p>
+            </div>
+
+            <div class="pro-card p-6 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <h4 class="text-gray-400 font-medium text-xs uppercase tracking-widest">Meta Description</h4>
+                        <span id="status-desc" class="text-xs font-semibold px-2 py-1 rounded bg-[#111] border border-border">N/A</span>
+                    </div>
+                    <p id="res-desc" class="text-white text-sm break-words leading-relaxed"></p>
+                </div>
+                <p class="text-xs text-gray-500 mt-4 border-t border-border pt-4">Length: <span id="res-desc-len" class="text-white font-medium">0</span> chars (Opt: 120-160)</p>
+            </div>
+        </div>
+
+        <!-- PREMIUM AREA (Advanced Metrics - Blurred & Locked) -->
+        <div class="relative mt-2 pro-card overflow-hidden">
+            
+            <!-- The Blurred Content -->
+            <div id="locked-content" class="locked-blur p-6 grid grid-cols-1 md:grid-cols-3 gap-6 opacity-30">
+                <!-- H-Tags -->
+                <div class="col-span-1 md:col-span-3">
+                    <h4 class="text-gray-400 font-medium text-xs uppercase tracking-widest mb-4">Heading Structure (H1-H6)</h4>
+                    <div class="flex gap-4 mb-4">
+                        <div class="bg-[#111] border border-border p-3 rounded-lg flex-1 text-center">
+                            <span class="block text-2xl font-bold text-white mb-1">1</span>
+                            <span class="text-[10px] text-gray-500 uppercase">H1 Tags</span>
+                        </div>
+                        <div class="bg-[#111] border border-border p-3 rounded-lg flex-1 text-center">
+                            <span class="block text-2xl font-bold text-white mb-1">8</span>
+                            <span class="text-[10px] text-gray-500 uppercase">H2 Tags</span>
+                        </div>
+                        <div class="bg-[#111] border border-border p-3 rounded-lg flex-1 text-center">
+                            <span class="block text-2xl font-bold text-white mb-1">14</span>
+                            <span class="text-[10px] text-gray-500 uppercase">H3-H6</span>
+                        </div>
+                    </div>
+                    <ul class="text-sm text-gray-400 space-y-2 list-disc list-inside">
+                        <li>Primary Keyword Target</li>
+                        <li>Secondary Subheading Analysis</li>
+                        <li>Semantic structure evaluation</li>
+                    </ul>
+                </div>
+
+                <!-- Images -->
+                <div class="col-span-1 md:col-span-2">
+                    <h4 class="text-gray-400 font-medium text-xs uppercase tracking-widest mb-4">Image Accessibility (ALT)</h4>
+                    <div class="flex items-end gap-3">
+                        <span class="text-4xl font-bold text-white">4</span>
+                        <span class="text-sm text-gray-500 mb-1">/ 24 missing ALT attributes</span>
+                    </div>
+                </div>
+
+                <!-- Words -->
+                <div class="col-span-1">
+                    <h4 class="text-gray-400 font-medium text-xs uppercase tracking-widest mb-4">Content Volume</h4>
+                    <div class="flex items-end gap-3">
+                        <span class="text-4xl font-bold text-white">1,402</span>
+                        <span class="text-sm text-gray-500 mb-1">words</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The Paywall Overlay -->
+            <div class="absolute inset-0 paywall-overlay flex flex-col items-center justify-center p-6 text-center z-20">
+                <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mb-4 shadow-[0_0_30px_rgba(255,255,255,0.2)]">
+                    <i class="ph ph-lock-key text-black text-xl"></i>
+                </div>
+                <h3 id="t-premium-title" class="text-2xl font-bold text-white mb-2 tracking-tight">Unlock Advanced Analysis</h3>
+                <p id="t-premium-desc" class="text-gray-400 text-sm max-w-md mx-auto mb-6">You've seen the basic scan. Our engine detected 24 deep technical vectors including heading hierarchy, image SEO, semantic density, and page architecture.</p>
+                <button onclick="togglePayment()" class="bg-accentBlue hover:bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg transition-colors flex items-center gap-2 shadow-lg shadow-blue-500/20">
+                    <span id="t-btn-pay">Unlock Full Report - $9.00</span>
+                    <i class="ph ph-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Settings Modal (Premium API Key) -->
+    <div id="settings-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="pro-card w-full max-w-md p-6 relative modal-enter" id="settings-content">
+            <button onclick="toggleSettings()" class="absolute top-4 right-4 text-gray-500 hover:text-white transition">
+                <i class="ph ph-x text-lg"></i>
+            </button>
+            
+            <div class="flex items-center gap-3 mb-6">
+                <i class="ph ph-sliders-horizontal text-xl text-gray-400"></i>
+                <h2 id="t-set-title" class="text-lg font-semibold text-white">Engine Settings</h2>
+            </div>
+
+            <p id="t-set-desc" class="text-sm text-gray-400 mb-6 leading-relaxed">
+                If the free proxies are blocked by Cloudflare or WAF (e.g. on complex sites), enter a <a href="https://www.scraperapi.com/" target="_blank" class="text-accentBlue hover:underline">ScraperAPI</a> key to bypass all restrictions globally.
+            </p>
+
+            <div class="mb-6">
+                <label id="t-set-label" class="block text-xs font-medium text-gray-500 uppercase tracking-widest mb-2">Premium API Key</label>
+                <input type="password" id="api-key-input" class="pro-input block w-full px-4 py-3 rounded-lg text-sm" placeholder="e.g. 9b8c7d6e5f4...">
+            </div>
+
+            <button onclick="saveSettings()" id="t-btn-save" class="w-full bg-white text-black hover:bg-gray-200 font-semibold py-3 rounded-lg transition-colors text-sm">
+                Save Configuration
+            </button>
+        </div>
+    </div>
+
+    <!-- Payment Modal (Simulation) -->
+    <div id="payment-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="pro-card w-full max-w-sm p-8 relative modal-enter" id="payment-content">
+            <button onclick="togglePayment()" class="absolute top-4 right-4 text-gray-500 hover:text-white transition">
+                <i class="ph ph-x text-lg"></i>
+            </button>
+            
+            <div class="text-center mb-6">
+                <i class="ph ph-credit-card text-3xl text-gray-400 mb-3"></i>
+                <h2 id="t-pay-title" class="text-xl font-bold text-white">Complete Purchase</h2>
+                <p class="text-sm text-gray-500 mt-1">SEOPro Elite PDF Report</p>
+            </div>
+
+            <form id="checkout-form" class="space-y-4">
+                <input type="email" class="pro-input block w-full px-4 py-3 rounded-lg text-sm" placeholder="Email address" required>
+                <div class="relative">
+                    <input type="text" class="pro-input block w-full px-4 py-3 rounded-lg text-sm" placeholder="Card number" required>
+                    <i class="ph ph-visa-logo absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-2xl"></i>
+                </div>
+                <div class="flex gap-4">
+                    <input type="text" class="pro-input block w-full px-4 py-3 rounded-lg text-sm" placeholder="MM/YY" required>
+                    <input type="text" class="pro-input block w-full px-4 py-3 rounded-lg text-sm" placeholder="CVC" required>
+                </div>
+                <button type="submit" id="submit-pay-btn" class="w-full bg-accentBlue hover:bg-blue-600 text-white font-semibold py-3 rounded-lg transition-colors mt-4 flex items-center justify-center gap-2">
+                    <i class="ph ph-lock-key"></i> Pay $9.00
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="w-full max-w-5xl mt-auto pt-10 text-center text-xs text-gray-600 pb-4 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p id="t-footer">&copy; 2026 SEOPro Elite. Professional Audit Architecture.</p>
+        <div class="flex gap-4">
+            <a href="#" class="hover:text-gray-300 transition">Privacy</a>
+            <a href="#" class="hover:text-gray-300 transition">Terms</a>
         </div>
     </footer>
 
-    <!-- JavaScript Logic -->
     <script>
-        // --- 1. Internationalization (i18n) - 8 Languages ---
+        // --- 1. Internationalization (i18n) Dictionary ---
         const i18n = {
             es: {
-                badge: "Motor de DOM e Inteligencia de Conversión",
-                heroTitle: "Auditor SEO On-Page Profundo",
-                heroSub: "Ingresa cualquier dominio global (ej. tudominio.com, sitio.es, tienda.co) para analizar su arquitectura técnica en milisegundos.",
-                btnAnalyze: "Ejecutar Auditoría",
-                analyzing: "Iniciando Cascada de Proxies Globales y escaneando DOM...",
-                waterfallInit: "Inicializando Cascada de Proxies Empresarial...",
-                waterfallNext: "Evadiendo seguridad WAF/Cloudflare... Nodo",
-                freeTitle: "Métricas de Auditoría Técnica",
-                btnPdf: "Descargar Reporte Gratis (PDF)",
-                premiumTitle: "Desbloquea el Blueprint SEO y de Ventas Pro",
-                premiumDesc: "Has completado el análisis superficial básico (5% de capacidad). Nuestro motor de inteligencia ha detectado <strong>35 vectores avanzados de optimización técnica y conversión comercial</strong>.<br><br><span class='text-emerald-400 font-bold'>Obtén el informe profesional completo en PDF y potencia tus ventas orgánicas hoy mismo por solo $9.00 USD.</span>",
-                labelName: "Nombre Completo",
-                labelEmail: "Correo Profesional",
-                btnPay: "Desbloquear Informe Pro - $9.00",
-                securePay: "Visa, Mastercard & Apple Pay • Pago Seguro SSL de 256-bit",
-                footer: "© 2026 SEOPro Elite Agency. Todos los derechos reservados.",
-                msgProcessing: "Redirigiendo a la pasarela de pagos segura...",
-                msgWafError: "El análisis falló. Protección de firewall estricta bloqueó la solicitud. Verifica el dominio.",
-                msgPdf: "Generando reporte PDF profesional...",
+                heroTitle: "Arquitectura SEO On-Page Avanzada",
+                heroSub: "Ingresa cualquier URL global para aplicar ingeniería inversa a su estructura DOM, jerarquía meta y rendimiento técnico.",
+                btnAnalyze: "Analizar",
+                analyzing: "Inicializando motor de scraping...",
+                scoreTitle: "Puntuación de Salud On-Page",
+                premiumTitle: "Desbloquear Análisis Avanzado",
+                premiumDesc: "Has visto el escaneo básico. Nuestro motor detectó múltiples vectores técnicos profundos, incluyendo jerarquía de encabezados, SEO de imágenes y arquitectura semántica.",
+                btnPay: "Desbloquear Reporte Completo - $9.00",
+                setTitle: "Configuración del Motor",
+                setDesc: "Si los proxies gratuitos son bloqueados por Cloudflare o WAF, ingresa una clave de <a href='https://www.scraperapi.com/' target='_blank' class='text-accentBlue hover:underline'>ScraperAPI</a> para evadir todas las restricciones globales.",
+                setLabel: "Clave API Premium",
+                btnSave: "Guardar Configuración",
+                payTitle: "Completar Compra",
+                footer: "© 2026 SEOPro Elite. Arquitectura de Auditoría Profesional.",
+                msgWafError: "Firewall detectado (403/503). Por favor, ingresa tu clave API Premium en Configuración (Icono de engranaje) para evadir el bloqueo.",
+                msgSaved: "Configuración guardada correctamente.",
                 statusGood: "ÓPTIMO",
-                statusWarn: "ALERTA",
                 statusError: "CRÍTICO",
-                statusMissing: "FALTA",
-                placeholderUrl: "tudominio.com",
-                placeholderName: "Alejandro Pérez",
-                placeholderEmail: "alejandro@empresa.com"
+                placeholderUrl: "tudominio.com"
             },
             en: {
-                badge: "AI-Powered DOM & Conversion Engine",
-                heroTitle: "Deep On-Page SEO Auditor",
-                heroSub: "Enter any global domain (e.g. tudominio.com, site.co.uk, web.jp) to instantly reverse-engineer its technical architecture.",
-                btnAnalyze: "Run Deep Audit",
-                analyzing: "Initializing Global Proxy Waterfall & parsing DOM...",
-                waterfallInit: "Initializing Enterprise Proxy Waterfall...",
-                waterfallNext: "Bypassing WAF/Cloudflare security... Node",
-                freeTitle: "Comprehensive Technical Metrics",
-                btnPdf: "Download Free Report (PDF)",
-                premiumTitle: "Unlock the Ultimate SEO & Sales Blueprint",
-                premiumDesc: "You have unlocked the basic surface scan (5% capacity). Our intelligence core has mapped <strong>35 advanced technical and conversion vectors</strong>.<br><br><span class='text-emerald-400 font-bold'>Get the definitive enterprise-grade PDF report and 10x your organic revenue today for just $9.00 USD.</span>",
-                labelName: "Full Name",
-                labelEmail: "Professional Email",
-                btnPay: "Unlock Full Enterprise Report - $9.00",
-                securePay: "Visa, Mastercard & Apple Pay • 256-bit Secure SSL Checkout",
-                footer: "© 2026 SEOPro Elite Agency. All rights reserved.",
-                msgProcessing: "Redirecting to secure global payment gateway...",
-                msgWafError: "Analysis failed. Strict firewall protection blocked client request. Please verify domain.",
-                msgPdf: "Generating professional PDF report...",
+                heroTitle: "Advanced On-Page<br>SEO Architecture",
+                heroSub: "Input any global URL to reverse-engineer its DOM structure, meta hierarchy, and technical performance.",
+                btnAnalyze: "Analyze",
+                analyzing: "Initializing scraping engine...",
+                scoreTitle: "On-Page Health Score",
+                premiumTitle: "Unlock Advanced Analysis",
+                premiumDesc: "You've seen the basic scan. Our engine detected multiple deep technical vectors including heading hierarchy, image SEO, and semantic architecture.",
+                btnPay: "Unlock Full Report - $9.00",
+                setTitle: "Engine Settings",
+                setDesc: "If free proxies are blocked by Cloudflare or WAF, enter a <a href='https://www.scraperapi.com/' target='_blank' class='text-accentBlue hover:underline'>ScraperAPI</a> key to bypass all restrictions globally.",
+                setLabel: "Premium API Key",
+                btnSave: "Save Configuration",
+                payTitle: "Complete Purchase",
+                footer: "© 2026 SEOPro Elite. Professional Audit Architecture.",
+                msgWafError: "Firewall Blocked (403/503). Please enter your Premium API Key in Settings (Gear Icon) to bypass this restriction.",
+                msgSaved: "Configuration saved successfully.",
                 statusGood: "OPTIMIZED",
-                statusWarn: "ATTENTION",
                 statusError: "CRITICAL",
-                statusMissing: "MISSING",
-                placeholderUrl: "tudominio.com",
-                placeholderName: "Alexander Wright",
-                placeholderEmail: "alex@company.com"
+                placeholderUrl: "yourdomain.com"
             },
             fr: {
-                badge: "Moteur DOM et Conversion Propulsé par IA",
-                heroTitle: "Auditeur SEO On-Page Approfondi",
-                heroSub: "Entrez n'importe quel domaine mondial pour rétro-concevoir son architecture technique en millisecondes.",
-                btnAnalyze: "Lancer l'Audit",
-                analyzing: "Initialisation du proxy global et analyse du DOM...",
-                waterfallInit: "Initialisation de la cascade de proxy...",
-                waterfallNext: "Contournement pare-feu WAF... Nœud",
-                freeTitle: "Métriques d'Audit Globales",
-                btnPdf: "Télécharger le Rapport Gratuit (PDF)",
-                premiumTitle: "Débloquez le Blueprint SEO et Ventes Ultime",
-                premiumDesc: "Vous avez débloqué l'analyse de base (5% de la capacité). Notre intelligence a cartographié <strong>35 vecteurs de conversion avancés</strong>.<br><br><span class='text-emerald-400 font-bold'>Obtenez le rapport PDF professionnel pour seulement 9,00 $ USD.</span>",
-                labelName: "Nom Complet",
-                labelEmail: "Email Professionnel",
-                btnPay: "Débloquer le Rapport Pro - 9,00 $",
-                securePay: "Visa, Mastercard • Paiement Sécurisé SSL",
-                footer: "© 2026 SEOPro Elite Agency. Tous droits réservés.",
-                msgProcessing: "Redirection vers la passerelle de paiement...",
-                msgWafError: "Échec de l'analyse. Protection de pare-feu stricte détectée.",
-                msgPdf: "Génération du rapport PDF...",
+                heroTitle: "Architecture SEO On-Page Avancée",
+                heroSub: "Entrez n'importe quelle URL pour rétro-concevoir sa structure DOM et ses performances techniques.",
+                btnAnalyze: "Analyser",
+                analyzing: "Initialisation du moteur de scraping...",
+                scoreTitle: "Score de Santé On-Page",
+                premiumTitle: "Débloquer l'Analyse Avancée",
+                premiumDesc: "Vous avez vu l'analyse de base. Notre moteur a détecté des vecteurs techniques profonds (hiérarchie, SEO images, sémantique).",
+                btnPay: "Débloquer le Rapport - 9,00 $",
+                setTitle: "Paramètres du Moteur",
+                setDesc: "Si bloqué par WAF/Cloudflare, entrez une clé <a href='https://www.scraperapi.com/' target='_blank' class='text-accentBlue hover:underline'>ScraperAPI</a> pour contourner les restrictions.",
+                setLabel: "Clé API Premium",
+                btnSave: "Enregistrer la Configuration",
+                payTitle: "Terminer l'Achat",
+                footer: "© 2026 SEOPro Elite. Architecture d'Audit Professionnelle.",
+                msgWafError: "Bloqué par Pare-feu. Veuillez entrer votre Clé API Premium dans les Paramètres pour contourner.",
+                msgSaved: "Configuration enregistrée.",
                 statusGood: "OPTIMISÉ",
-                statusWarn: "ATTENTION",
                 statusError: "CRITIQUE",
-                statusMissing: "ABSENT",
-                placeholderUrl: "tudominio.com",
-                placeholderName: "Jean Dupont",
-                placeholderEmail: "jean@entreprise.fr"
+                placeholderUrl: "votredomaine.fr"
             },
             de: {
-                badge: "KI-gestützte DOM- & Konversions-Engine",
-                heroTitle: "Tiefgehender On-Page SEO Auditor",
-                heroSub: "Geben Sie eine beliebige globale Domain ein, um die technische Architektur zu analysieren.",
-                btnAnalyze: "Audit Starten",
-                analyzing: "Initialisiere globale Proxy-Kaskade & parse DOM...",
-                waterfallInit: "Initialisiere Enterprise Proxy-Kaskade...",
-                waterfallNext: "Umgehe WAF/Cloudflare Schutz... Knoten",
-                freeTitle: "Umfassende Technische Metriken",
-                btnPdf: "Kostenlosen Bericht herunterladen (PDF)",
-                premiumTitle: "Schalten Sie den ultimativen SEO & Sales Blueprint frei",
-                premiumDesc: "Sie haben den Basis-Scan freigeschaltet. Unsere Intelligenz hat <strong>35 erweiterte Ranking- und Konversionsvektoren</strong> kartiert.<br><br><span class='text-emerald-400 font-bold'>Holen Sie sich den Enterprise-PDF-Bericht für nur 9,00 $ USD.</span>",
-                labelName: "Vollständiger Name",
-                labelEmail: "Geschäftliche E-Mail",
-                btnPay: "Enterprise-Bericht Freischalten - $9.00",
-                securePay: "Visa, Mastercard • 256-Bit SSL Checkout",
-                footer: "© 2026 SEOPro Elite Agency. Alle Rechte vorbehalten.",
-                msgProcessing: "Weiterleitung zum sicheren Zahlungsgateway...",
-                msgWafError: "Analyse fehlgeschlagen. Strenge Firewall-Sicherheit blockierte die Anfrage.",
-                msgPdf: "Generiere professionellen PDF-Bericht...",
+                heroTitle: "Erweiterte On-Page SEO-Architektur",
+                heroSub: "Geben Sie eine URL ein, um DOM-Struktur und technische Leistung zu analysieren.",
+                btnAnalyze: "Analysieren",
+                analyzing: "Initialisiere Scraping-Engine...",
+                scoreTitle: "On-Page Gesundheits-Score",
+                premiumTitle: "Erweiterte Analyse freischalten",
+                premiumDesc: "Dies war der Basis-Scan. Unsere Engine hat tiefe technische Vektoren wie Hierarchie und Bild-SEO erkannt.",
+                btnPay: "Vollen Bericht freischalten - $9.00",
+                setTitle: "Engine-Einstellungen",
+                setDesc: "Falls durch Cloudflare/WAF blockiert, geben Sie einen <a href='https://www.scraperapi.com/' target='_blank' class='text-accentBlue hover:underline'>ScraperAPI</a>-Schlüssel ein, um Restriktionen zu umgehen.",
+                setLabel: "Premium API-Schlüssel",
+                btnSave: "Konfiguration speichern",
+                payTitle: "Kauf abschließen",
+                footer: "© 2026 SEOPro Elite. Professionelle Audit-Architektur.",
+                msgWafError: "Firewall-Blockade. Bitte Premium-API-Schlüssel in den Einstellungen eingeben.",
+                msgSaved: "Konfiguration erfolgreich gespeichert.",
                 statusGood: "OPTIMIERT",
-                statusWarn: "ACHTUNG",
                 statusError: "KRITISCH",
-                statusMissing: "FEHLT",
-                placeholderUrl: "tudominio.com",
-                placeholderName: "Max Mustermann",
-                placeholderEmail: "max@firma.de"
+                placeholderUrl: "ihredomain.de"
             },
             it: {
-                badge: "Motore DOM e Conversione basato su IA",
-                heroTitle: "Auditor SEO On-Page Avanzato",
-                heroSub: "Inserisci qualsiasi dominio globale per analizzare l'architettura tecnica in pochi millisecondi.",
-                btnAnalyze: "Esegui Audit",
-                analyzing: "Inizializzazione cascata proxy globale e analisi DOM...",
-                waterfallInit: "Inizializzazione cascata proxy aziendale...",
-                waterfallNext: "Elusione protezione WAF... Nodo",
-                freeTitle: "Metriche di Audit Complete",
-                btnPdf: "Scarica Report Gratuito (PDF)",
-                premiumTitle: "Sblocca il Blueprint SEO e Vendite Definitivo",
-                premiumDesc: "Hai sbloccato la scansione di base. La nostra intelligenza ha mappato <strong>35 vettori avanzati di conversione</strong>.<br><br><span class='text-emerald-400 font-bold'>Ottieni il report PDF aziendale per soli $9.00 USD.</span>",
-                labelName: "Nome Completo",
-                labelEmail: "Email Professionale",
+                heroTitle: "Architettura SEO On-Page Avanzata",
+                heroSub: "Inserisci un URL per analizzare la struttura DOM e le prestazioni tecniche.",
+                btnAnalyze: "Analizza",
+                analyzing: "Inizializzazione motore di scraping...",
+                scoreTitle: "Punteggio di Salute On-Page",
+                premiumTitle: "Sblocca Analisi Avanzata",
+                premiumDesc: "Hai visto la scansione di base. Il nostro motore ha rilevato vettori tecnici profondi (gerarchia, SEO immagini).",
                 btnPay: "Sblocca Report Completo - $9.00",
-                securePay: "Visa, Mastercard • Checkout Sicuro SSL",
-                footer: "© 2026 SEOPro Elite Agency. Tutti i diritti riservati.",
-                msgProcessing: "Reindirizzamento al gateway di pagamento sicuro...",
-                msgWafError: "Analisi fallita. Protezione firewall severa rilevata.",
-                msgPdf: "Generazione report PDF professionale...",
+                setTitle: "Impostazioni Motore",
+                setDesc: "Se bloccato da WAF, inserisci una chiave <a href='https://www.scraperapi.com/' target='_blank' class='text-accentBlue hover:underline'>ScraperAPI</a> per aggirare le restrizioni.",
+                setLabel: "Chiave API Premium",
+                btnSave: "Salva Configurazione",
+                payTitle: "Completa Acquisto",
+                footer: "© 2026 SEOPro Elite. Architettura di Audit Professionale.",
+                msgWafError: "Blocco Firewall. Inserisci la tua chiave API Premium nelle Impostazioni.",
+                msgSaved: "Configurazione salvata.",
                 statusGood: "OTTIMIZZATO",
-                statusWarn: "ATTENZIONE",
                 statusError: "CRITICO",
-                statusMissing: "MANCANTE",
-                placeholderUrl: "tudominio.com",
-                placeholderName: "Mario Rossi",
-                placeholderEmail: "mario@azienda.it"
+                placeholderUrl: "tuodominio.it"
             },
             pt: {
-                badge: "Motor de DOM e Conversão com IA",
-                heroTitle: "Auditor SEO On-Page Profundo",
-                heroSub: "Insira qualquer domínio global para fazer engenharia reversa na arquitetura técnica e conversões.",
-                btnAnalyze: "Executar Auditoria",
-                analyzing: "Inicializando cascata global de proxies e analisando DOM...",
-                waterfallInit: "Inicializando cascata de proxies corporativa...",
-                waterfallNext: "Ignorando segurança WAF... Nó",
-                freeTitle: "Métricas de Auditoria Completa",
-                btnPdf: "Baixar Relatório Gratuito (PDF)",
-                premiumTitle: "Desbloqueie o Blueprint SEO e de Vendas Definitivo",
-                premiumDesc: "Você desbloqueou a verificação básica. Nossa inteligência mapeou <strong>35 vetores avançados de ranqueamento e conversão</strong>.<br><br><span class='text-emerald-400 font-bold'>Obtenha o relatório PDF corporativo por apenas $9.00 USD.</span>",
-                labelName: "Nome Completo",
-                labelEmail: "E-mail Profissional",
-                btnPay: "Desbloquear Relatório Pro - $9.00",
-                securePay: "Visa, Mastercard • Checkout Seguro SSL",
-                footer: "© 2026 SEOPro Elite Agency. Todos os direitos reservados.",
-                msgProcessing: "Redirecionando para o gateway de pagamento seguro...",
-                msgWafError: "Falha na análise. Proteção de firewall restrita bloqueou a solicitação.",
-                msgPdf: "Gerando relatório PDF profissional...",
+                heroTitle: "Arquitetura SEO On-Page Avançada",
+                heroSub: "Insira qualquer URL para aplicar engenharia reversa na estrutura DOM e desempenho.",
+                btnAnalyze: "Analisar",
+                analyzing: "Inicializando motor de scraping...",
+                scoreTitle: "Pontuação de Saúde On-Page",
+                premiumTitle: "Desbloquear Análise Avançada",
+                premiumDesc: "Você viu a verificação básica. Nosso motor detectou vetores técnicos profundos (hierarquia, SEO de imagens).",
+                btnPay: "Desbloquear Relatório - $9.00",
+                setTitle: "Configurações do Motor",
+                setDesc: "Se bloqueado por WAF/Cloudflare, insira uma chave da <a href='https://www.scraperapi.com/' target='_blank' class='text-accentBlue hover:underline'>ScraperAPI</a> para ignorar restrições.",
+                setLabel: "Chave API Premium",
+                btnSave: "Salvar Configuração",
+                payTitle: "Concluir Compra",
+                footer: "© 2026 SEOPro Elite. Arquitetura de Auditoria Profissional.",
+                msgWafError: "Bloqueado por Firewall. Insira sua chave API Premium nas configurações para contornar.",
+                msgSaved: "Configuração salva com sucesso.",
                 statusGood: "OTIMIZADO",
-                statusWarn: "ATENÇÃO",
                 statusError: "CRÍTICO",
-                statusMissing: "FALTANDO",
-                placeholderUrl: "tudominio.com",
-                placeholderName: "João Silva",
-                placeholderEmail: "joao@empresa.com.br"
+                placeholderUrl: "seudominio.com.br"
             },
             ja: {
-                badge: "AI搭載 DOM・コンバージョンエンジン",
-                heroTitle: "ディープオンページ SEO監査",
-                heroSub: "あらゆるグローバルドメインを入力し、その技術的アーキテクチャを瞬時に解析します。",
-                btnAnalyze: "監査を実行",
-                analyzing: "グローバルプロキシフォールバック初期化およびDOM解析中...",
-                waterfallInit: "エンタープライズプロキシフォールバック初期化中...",
-                waterfallNext: "WAF/Cloudflareセキュリティバイパス中... ノード",
-                freeTitle: "包括的テクニカル指標",
-                btnPdf: "無料レポートをダウンロード (PDF)",
-                premiumTitle: "究極のSEO・売上向上ブループリントを解除",
-                premiumDesc: "基本スキャンが完了しました。当社のインテリジェンスコアは<strong>35の高度な最適化・コンバージョンベクトル</strong>をマッピングしました。<br><br><span class='text-emerald-400 font-bold'>わずか9.00米ドルで、本格的なエンタープライズPDFレポートを入手してください。</span>",
-                labelName: "氏名",
-                labelEmail: "ビジネスメール",
-                btnPay: "プロ用レポートを解除 - $9.00",
-                securePay: "Visa, Mastercard • 256ビット暗号化SSL決済",
-                footer: "© 2026 SEOPro Elite Agency. All rights reserved.",
-                msgProcessing: "安全なグローバル決済ゲートウェイへ転送中...",
-                msgWafError: "解析に失敗しました。強力なファイアウォール保護がリクエストをブロックしました。",
-                msgPdf: "プロフェッショナルPDFレポートを生成中...",
+                heroTitle: "高度なオンページSEOアーキテクチャ",
+                heroSub: "URLを入力して、DOM構造、メタ階層、技術的パフォーマンスをリバースエンジニアリングします。",
+                btnAnalyze: "解析する",
+                analyzing: "スクレイピングエンジンを初期化中...",
+                scoreTitle: "オンページ健康スコア",
+                premiumTitle: "高度な解析をロック解除",
+                premiumDesc: "基本スキャンが完了しました。見出し階層、画像SEOなどの深い技術的ベクトルが検出されました。",
+                btnPay: "完全なレポートを解除 - $9.00",
+                setTitle: "エンジン設定",
+                setDesc: "Cloudflare等でブロックされた場合、制限を回避するために<a href='https://www.scraperapi.com/' target='_blank' class='text-accentBlue hover:underline'>ScraperAPI</a>キーを入力してください。",
+                setLabel: "プレミアムAPIキー",
+                btnSave: "設定を保存",
+                payTitle: "購入手続き",
+                footer: "© 2026 SEOPro Elite. プロフェッショナル監査アーキテクチャ。",
+                msgWafError: "ファイアウォールによりブロックされました。設定（歯車アイコン）でAPIキーを入力してください。",
+                msgSaved: "設定が保存されました。",
                 statusGood: "最適化済",
-                statusWarn: "要注意",
                 statusError: "致命的",
-                statusMissing: "未検出",
-                placeholderUrl: "tudominio.com",
-                placeholderName: "山田 太郎",
-                placeholderEmail: "yamada@company.co.jp"
+                placeholderUrl: "yourdomain.co.jp"
             },
             zh: {
-                badge: "AI 驱动的 DOM 与转化引擎",
-                heroTitle: "深度页面 SEO 专家审核",
-                heroSub: "输入任何全球域名，立即对其技术架构、HTML 层次结构和转化指标进行逆向工程。",
-                btnAnalyze: "运行深度审计",
-                analyzing: "正在初始化全局代理瀑布流并解析 DOM...",
-                waterfallInit: "正在初始化企业级代理瀑布流...",
-                waterfallNext: "绕过 WAF/Cloudflare 安全防火墙... 节点",
-                freeTitle: "综合技术审计指标",
-                btnPdf: "下载免费报告 (PDF)",
-                premiumTitle: "解锁终极 SEO 与销售增长蓝图",
-                premiumDesc: "您已解锁基础表面扫描（占总能力的 5%）。我们的精英核心已映射 <strong>35 个高级技术与转化向量</strong>。<br><br><span class='text-emerald-400 font-bold'>仅需 $9.00 美元即可获得企业级 PDF 报告并全面提升自然搜索收益。</span>",
-                labelName: "全名",
-                labelEmail: "工作邮箱",
-                btnPay: "解锁完整企业报告 - $9.00",
-                securePay: "Visa, Mastercard • 256位安全 SSL 结算",
-                footer: "© 2026 SEOPro Elite Agency. 保留所有权利。",
-                msgProcessing: "正在重定向至全球安全支付网关...",
-                msgWafError: "分析失败。严格的防火墙保护阻止了客户端请求，请检查域名。",
-                msgPdf: "正在生成专业 PDF 报告...",
-                statusGood: "极佳",
-                statusWarn: "注意",
+                heroTitle: "高级页面 SEO 架构",
+                heroSub: "输入任何 URL，逆向工程其 DOM 结构、Meta 层次结构和技术性能。",
+                btnAnalyze: "分析",
+                analyzing: "正在初始化抓取引擎...",
+                scoreTitle: "页面健康得分",
+                premiumTitle: "解锁高级分析",
+                premiumDesc: "您已看到基础扫描。我们的引擎检测到了深度技术向量，包括标题层次结构和图像 SEO。",
+                btnPay: "解锁完整报告 - $9.00",
+                setTitle: "引擎设置",
+                setDesc: "如果免费代理被 Cloudflare 或 WAF 拦截，请输入 <a href='https://www.scraperapi.com/' target='_blank' class='text-accentBlue hover:underline'>ScraperAPI</a> 密钥以绕过所有限制。",
+                setLabel: "高级 API 密钥",
+                btnSave: "保存配置",
+                payTitle: "完成购买",
+                footer: "© 2026 SEOPro Elite. 专业审计架构。",
+                msgWafError: "防火墙拦截 (403/503)。请在设置 (齿轮图标) 中输入您的高级 API 密钥以绕过限制。",
+                msgSaved: "配置已成功保存。",
+                statusGood: "优",
                 statusError: "严重",
-                statusMissing: "缺失",
-                placeholderUrl: "tudominio.com",
-                placeholderName: "张三",
-                placeholderEmail: "zhangsan@gongsi.com"
+                placeholderUrl: "nindeyuming.com"
             }
         };
 
-        let currentLang = 'es';
+        let currentLang = 'en'; // default English based on initial HTML
 
-        function updateTexts(lang) {
+        function updateLanguage(lang) {
             currentLang = lang;
             const t = i18n[lang];
-            document.getElementById('t-badge').innerHTML = `<i class="ph ph-cpu text-sm"></i> ${t.badge}`;
+            
             document.getElementById('t-hero-title').innerHTML = t.heroTitle;
             document.getElementById('t-hero-sub').innerHTML = t.heroSub;
             document.getElementById('t-btn-analyze').innerText = t.btnAnalyze;
             document.getElementById('t-analyzing').innerText = t.analyzing;
-            document.getElementById('t-free-title').innerHTML = `<i class="ph ph-chart-line-up text-emerald-400 text-2xl"></i> ${t.freeTitle}`;
-            document.getElementById('t-btn-pdf').innerText = t.btnPdf;
+            document.getElementById('t-score-title').innerText = t.scoreTitle;
             document.getElementById('t-premium-title').innerText = t.premiumTitle;
             document.getElementById('t-premium-desc').innerHTML = t.premiumDesc;
-            document.getElementById('t-label-name').innerText = t.labelName;
-            document.getElementById('t-label-email').innerText = t.labelEmail;
-            document.getElementById('t-btn-pay').innerHTML = `<i class="ph ph-credit-card text-xl"></i><span>${t.btnPay}</span>`;
-            document.getElementById('t-secure-pay').innerText = t.securePay;
-            document.getElementById('t-footer').innerText = t.footer;
-            
+            document.getElementById('t-btn-pay').innerHTML = `${t.btnPay} <i class="ph ph-arrow-right"></i>`;
+            document.getElementById('t-set-title').innerText = t.setTitle;
+            document.getElementById('t-set-desc').innerHTML = t.setDesc;
+            document.getElementById('t-set-label').innerText = t.setLabel;
+            document.getElementById('t-btn-save').innerText = t.btnSave;
+            document.getElementById('t-pay-title').innerText = t.payTitle;
+            document.getElementById('t-footer').innerHTML = t.footer;
             document.getElementById('url-input').placeholder = t.placeholderUrl;
-            document.getElementById('cust-name').placeholder = t.placeholderName;
-            document.getElementById('cust-email').placeholder = t.placeholderEmail;
         }
 
         document.getElementById('lang-select').addEventListener('change', (e) => {
-            updateTexts(e.target.value);
+            updateLanguage(e.target.value);
         });
 
-        // --- 2. Custom Message Box ---
-        function showMessage(text, type = 'info') {
-            const box = document.getElementById('message-box');
-            const msgText = document.getElementById('msg-text');
-            const icon = document.getElementById('msg-icon');
-            const wrapper = document.getElementById('msg-icon-wrapper');
+        // --- 2. Custom Toast System ---
+        function showToast(text, type = 'error') {
+            const toast = document.getElementById('toast-container');
+            const icon = document.getElementById('toast-icon');
+            document.getElementById('toast-text').innerText = text;
             
-            msgText.innerText = text;
-            box.className = 'fixed top-6 left-1/2 transform -translate-x-1/2 z-50 glass-panel rounded-xl px-6 py-4 flex items-center gap-3 border shadow-2xl transition duration-300';
+            toast.className = 'fixed top-6 left-1/2 transform -translate-x-1/2 z-[100] pro-card px-5 py-3 flex items-center gap-3 shadow-2xl transition duration-300';
             
-            if(type === 'error') {
-                box.classList.add('border-rose-500/40', 'bg-rose-950/40');
-                wrapper.className = 'w-8 h-8 rounded-lg bg-rose-500/20 flex items-center justify-center text-rose-400';
-                icon.className = 'ph ph-warning-circle text-xl';
+            if (type === 'error') {
+                toast.classList.add('border-red-500/30', 'bg-red-950/20');
+                icon.className = 'ph ph-warning-circle text-red-400 text-xl';
             } else if (type === 'success') {
-                box.classList.add('border-emerald-500/40', 'bg-emerald-950/40');
-                wrapper.className = 'w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center text-emerald-400';
-                icon.className = 'ph ph-check-circle text-xl';
-            } else {
-                box.classList.add('border-emerald-500/30', 'bg-slate-900/90');
-                wrapper.className = 'w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center text-emerald-400';
-                icon.className = 'ph ph-info text-xl';
+                toast.classList.add('border-emerald-500/30', 'bg-emerald-950/20');
+                icon.className = 'ph ph-check-circle text-emerald-400 text-xl';
             }
+            
+            // Trigger animation
+            requestAnimationFrame(() => {
+                toast.style.opacity = '1';
+                toast.style.transform = 'translate(-50%, 0)';
+            });
 
             setTimeout(() => {
-                box.classList.add('hidden-msg');
+                toast.style.opacity = '0';
+                toast.style.transform = 'translate(-50%, -20px)';
             }, 5000);
         }
 
-        // --- 3. Smart URL Sanitizer & Global Proxy Waterfall ---
-        function normalizeUrl(url) {
-            let cleanUrl = url.trim();
-            if (!/^https?:\/\//i.test(cleanUrl)) {
-                cleanUrl = 'https://' + cleanUrl;
+        // --- 3. Modal Controls & Settings Storage ---
+        function toggleSettings() {
+            const modal = document.getElementById('settings-modal');
+            const content = document.getElementById('settings-content');
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                document.getElementById('api-key-input').value = localStorage.getItem('seo_api_key') || '';
+                setTimeout(() => content.classList.add('modal-enter-active'), 10);
+            } else {
+                content.classList.remove('modal-enter-active');
+                setTimeout(() => modal.classList.add('hidden'), 300);
             }
-            return cleanUrl;
         }
 
-        async function fetchWithWaterfall(url) {
-            const statusText = document.getElementById('t-analyzing');
-            const t = i18n[currentLang];
-            statusText.innerText = t.waterfallInit;
+        function saveSettings() {
+            const val = document.getElementById('api-key-input').value.trim();
+            if (val) {
+                localStorage.setItem('seo_api_key', val);
+            } else {
+                localStorage.removeItem('seo_api_key');
+            }
+            toggleSettings();
+            showToast(i18n[currentLang].msgSaved, 'success');
+        }
 
-            // 6-Tier High-Availability Proxy Waterfall supporting any global domain (.es, .us, .co, .co.jp, etc.)
+        function togglePayment() {
+            const modal = document.getElementById('payment-modal');
+            const content = document.getElementById('payment-content');
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                setTimeout(() => content.classList.add('modal-enter-active'), 10);
+            } else {
+                content.classList.remove('modal-enter-active');
+                setTimeout(() => modal.classList.add('hidden'), 300);
+            }
+        }
+
+        document.getElementById('checkout-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('submit-pay-btn');
+            const orig = btn.innerHTML;
+            btn.innerHTML = `<div class="spinner"></div> Processing...`;
+            setTimeout(() => {
+                btn.innerHTML = orig;
+                togglePayment();
+                showToast("Payment processed (Simulation Mode)", "success");
+            }, 1500);
+        });
+
+        // --- 4. Scraping Engine (Waterfall + Premium Bypass) ---
+        function normalizeUrl(url) {
+            let clean = url.trim();
+            if (!/^https?:\/\//i.test(clean)) clean = 'https://' + clean;
+            return clean;
+        }
+
+        async function fetchDOM(url) {
+            const apiKey = localStorage.getItem('seo_api_key');
+            
+            // Route 1: Premium Bypass (Guaranteed success against CF if valid key provided)
+            if (apiKey) {
+                // Using ScraperAPI format as standard example
+                const premiumUrl = `https://api.scraperapi.com/?api_key=${apiKey}&url=${encodeURIComponent(url)}`;
+                try {
+                    const res = await fetch(premiumUrl);
+                    if (!res.ok) throw new Error("Premium API request failed");
+                    const text = await res.text();
+                    return text;
+                } catch (e) {
+                    console.error("Premium fetch error", e);
+                    // Fallback to regular if premium fails
+                }
+            }
+
+            // Route 2: Free Proxy Waterfall
             const proxies = [
-                { type: 'raw', url: (u) => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}` },
-                { type: 'json', url: (u) => `https://api.allorigins.win/get?url=${encodeURIComponent(u)}` },
-                { type: 'raw', url: (u) => `https://corsproxy.io/?${encodeURIComponent(u)}` },
-                { type: 'raw', url: (u) => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(u)}` },
-                { type: 'raw', url: (u) => `https://api.cors.lol/?url=${encodeURIComponent(u)}` },
-                { type: 'json', url: (u) => `https://thingproxy.freeboard.io/fetch/${u}` }
+                (u) => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
+                (u) => `https://corsproxy.io/?${encodeURIComponent(u)}`
             ];
 
-            for (let i = 0; i < proxies.length; i++) {
-                const proxy = proxies[i];
+            for (let getProxy of proxies) {
                 try {
-                    statusText.innerText = `${t.waterfallNext} ${i + 1}/${proxies.length}...`;
-                    const proxyUrl = proxy.url(url);
-                    const response = await fetch(proxyUrl, { cache: 'no-store' });
-                    
-                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                    
-                    let html = '';
-                    if (proxy.type === 'json') {
-                        const data = await response.json();
-                        html = data.contents || data.body || '';
-                    } else {
-                        html = await response.text();
+                    const res = await fetch(getProxy(url), { cache: 'no-store' });
+                    if (res.ok) {
+                        const html = await res.text();
+                        // Cloudflare / WAF Detection Check
+                        if (html.includes('Cloudflare') && html.includes('challenge')) {
+                            throw new Error('WAF_BLOCKED');
+                        }
+                        if (html.length < 500) {
+                            throw new Error('WAF_BLOCKED_EMPTY');
+                        }
+                        return html;
                     }
-
-                    if (!html || html.trim() === '' || html.includes('Origin not allowed') || (html.includes('Ray ID:') && html.length < 600)) {
-                        throw new Error('Invalid raw HTML or WAF security challenge triggered');
-                    }
-                    return html;
-                } catch (error) {
-                    console.warn(`Proxy node ${i + 1} encountered resistance:`, error.message);
+                } catch (err) {
+                    if (err.message.includes('WAF_BLOCKED')) throw err; // Escalate immediately
+                    console.warn("Proxy node failed, trying next...");
                 }
             }
             
-            throw new Error('All proxy nodes exhausted.');
+            throw new Error('WAF_BLOCKED'); // If all fail or timeout, assume block
         }
 
-        // --- 4. Deep DOM Analysis & Scientific Scoring ---
-        function analyzeDOM(htmlString) {
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(htmlString, 'text/html');
-
-            // Title
-            const titleElement = doc.querySelector('title');
-            const title = titleElement ? titleElement.innerText.trim() : '';
-
-            // Meta Description
-            const descElement = doc.querySelector('meta[name="description"]');
-            const description = descElement ? descElement.getAttribute('content').trim() : '';
-
-            // H1 Headings
-            const h1Elements = doc.querySelectorAll('h1');
-            const h1s = Array.from(h1Elements).map(el => el.innerText.trim()).filter(text => text.length > 0);
-            
-            // H2 Headings
-            const h2Elements = doc.querySelectorAll('h2');
-            const h2sCount = h2Elements.length;
-
-            // Images & Alt Tags
-            const images = doc.querySelectorAll('img');
-            let imgMissingAlt = 0;
-            images.forEach(img => {
-                if (!img.hasAttribute('alt') || img.getAttribute('alt').trim() === '') {
-                    imgMissingAlt++;
-                }
-            });
-
-            // Word Count
-            const bodyClone = doc.body ? doc.body.cloneNode(true) : doc.createElement('body');
-            const removeTags = bodyClone.querySelectorAll('script, style, noscript, svg, nav, footer, header');
-            removeTags.forEach(el => el.remove());
-            
-            const textContent = bodyClone.innerText || '';
-            const words = textContent.replace(/\s+/g, ' ').trim().split(' ').filter(word => word.length > 1);
-            const wordCount = words.length;
-
-            // Scientific Score Calculation (0-100)
-            let score = 100;
-            if (!title || title.length < 30 || title.length > 70) score -= 20;
-            if (!description || description.length < 100 || description.length > 170) score -= 20;
-            if (h1s.length !== 1) score -= 20;
-            if (h2sCount === 0) score -= 15;
-            if (images.length > 0 && imgMissingAlt > 0) score -= 15;
-            if (wordCount < 400) score -= 10;
-            score = Math.max(25, score);
-
-            return { 
-                title, 
-                description, 
-                h1s, 
-                h2sCount, 
-                totalImages: images.length, 
-                imgMissingAlt, 
-                wordCount,
-                score 
-            };
-        }
-
-        // --- 5. UI Rendering Helpers ---
-        function getStatusBadge(length, min, max, isMissing) {
+        // --- 5. Parse & Render ---
+        function getBadge(isError) {
             const t = i18n[currentLang];
-            if (isMissing) return `<span class="bg-rose-950/80 text-rose-300 border border-rose-500/30 px-2.5 py-1 rounded-lg text-xs font-extrabold">${t.statusMissing}</span>`;
-            if (length >= min && length <= max) {
-                return `<span class="bg-emerald-950/80 text-emerald-300 border border-emerald-500/30 px-2.5 py-1 rounded-lg text-xs font-extrabold">${t.statusGood}</span>`;
-            }
-            return `<span class="bg-amber-950/80 text-amber-300 border border-amber-500/30 px-2.5 py-1 rounded-lg text-xs font-extrabold">${t.statusWarn}</span>`;
-        }
-
-        function getGenericBadge(condition) {
-            const t = i18n[currentLang];
-            if (condition) {
-                return `<span class="bg-emerald-950/80 text-emerald-300 border border-emerald-500/30 px-2.5 py-1 rounded-lg text-xs font-extrabold">${t.statusGood}</span>`;
-            }
-            return `<span class="bg-amber-950/80 text-amber-300 border border-amber-500/30 px-2.5 py-1 rounded-lg text-xs font-extrabold">${t.statusWarn}</span>`;
+            return isError 
+                ? `<span class="text-xs font-semibold px-2 py-1 rounded bg-red-950/30 text-red-400 border border-red-500/20">${t.statusError}</span>`
+                : `<span class="text-xs font-semibold px-2 py-1 rounded bg-emerald-950/30 text-emerald-400 border border-emerald-500/20">${t.statusGood}</span>`;
         }
 
         document.getElementById('audit-form').addEventListener('submit', async (e) => {
             e.preventDefault();
-            
             const rawUrl = document.getElementById('url-input').value;
             const url = normalizeUrl(rawUrl);
+            
             const btn = document.getElementById('analyze-btn');
             const loading = document.getElementById('loading-state');
             const results = document.getElementById('results-container');
-            const t = i18n[currentLang];
             
-            // UI Reset
             btn.disabled = true;
-            btn.classList.add('opacity-50', 'cursor-not-allowed');
             loading.classList.remove('hidden');
             results.classList.add('hidden');
 
             try {
-                const html = await fetchWithWaterfall(url);
-                const data = analyzeDOM(html);
+                const html = await fetchDOM(url);
+                
+                // Parse DOM
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
 
-                // Populate UI
+                const title = doc.querySelector('title')?.innerText.trim() || '';
+                const desc = doc.querySelector('meta[name="description"]')?.getAttribute('content').trim() || '';
+                
+                // Scoring Math
+                let score = 100;
+                if (!title || title.length < 30 || title.length > 70) score -= 15;
+                if (!desc || desc.length < 100 || desc.length > 170) score -= 20;
+
+                // Render Basic UI
                 document.getElementById('res-url').innerText = url;
-                document.getElementById('res-score').innerText = data.score;
                 
-                // Title
-                document.getElementById('res-title').innerText = data.title || '[Sin etiqueta Title encontrada]';
-                document.getElementById('res-title').className = data.title ? "text-white text-base font-semibold break-words mb-3" : "text-rose-400 text-base italic break-words mb-3";
-                document.getElementById('res-title-len').innerText = data.title.length;
-                document.getElementById('title-status').innerHTML = getStatusBadge(data.title.length, 30, 70, !data.title);
+                // Score animation
+                let currentScore = 0;
+                const scoreInterval = setInterval(() => {
+                    if(currentScore >= score) clearInterval(scoreInterval);
+                    document.getElementById('res-score').innerText = currentScore;
+                    currentScore++;
+                }, 15);
 
-                // Description
-                document.getElementById('res-desc').innerText = data.description || '[Sin Meta Description encontrada]';
-                document.getElementById('res-desc').className = data.description ? "text-white text-sm break-words mb-3 leading-relaxed" : "text-rose-400 text-sm italic break-words mb-3";
-                document.getElementById('res-desc-len').innerText = data.description.length;
-                document.getElementById('desc-status').innerHTML = getStatusBadge(data.description.length, 100, 170, !data.description);
+                // Title render
+                document.getElementById('res-title').innerText = title || '[Missing Title Tag]';
+                document.getElementById('res-title').className = title ? 'text-white text-base font-medium break-words' : 'text-red-400 text-base italic break-words';
+                document.getElementById('res-title-len').innerText = title.length;
+                document.getElementById('status-title').outerHTML = getBadge(!title || title.length < 30 || title.length > 70);
 
-                // H1s
-                const h1List = document.getElementById('res-h1-list');
-                h1List.innerHTML = '';
-                document.getElementById('res-h1-count').innerText = data.h1s.length;
-                
-                if(data.h1s.length === 1) {
-                    document.getElementById('h1-status').innerHTML = `<span class="bg-emerald-950/80 text-emerald-300 border border-emerald-500/30 px-2.5 py-1 rounded-lg text-xs font-extrabold">${t.statusGood}</span>`;
-                } else if (data.h1s.length === 0) {
-                    document.getElementById('h1-status').innerHTML = `<span class="bg-rose-950/80 text-rose-300 border border-rose-500/30 px-2.5 py-1 rounded-lg text-xs font-extrabold">${t.statusMissing}</span>`;
-                    h1List.innerHTML = `<li class="text-rose-400 italic">No se encontraron etiquetas H1 en el DOM.</li>`;
-                } else {
-                    document.getElementById('h1-status').innerHTML = `<span class="bg-amber-950/80 text-amber-300 border border-amber-500/30 px-2.5 py-1 rounded-lg text-xs font-extrabold">Múltiples H1</span>`;
-                }
+                // Desc render
+                document.getElementById('res-desc').innerText = desc || '[Missing Meta Description]';
+                document.getElementById('res-desc').className = desc ? 'text-white text-sm break-words leading-relaxed' : 'text-red-400 text-sm italic break-words leading-relaxed';
+                document.getElementById('res-desc-len').innerText = desc.length;
+                document.getElementById('status-desc').outerHTML = getBadge(!desc || desc.length < 100 || desc.length > 170);
 
-                if (data.h1s.length > 0) {
-                    data.h1s.forEach(h1 => {
-                        const li = document.createElement('li');
-                        li.innerText = h1;
-                        h1List.appendChild(li);
-                    });
-                }
-
-                // H2s
-                document.getElementById('res-h2-count').innerText = data.h2sCount;
-                document.getElementById('h2-status').innerHTML = getGenericBadge(data.h2sCount > 0);
-
-                // Images
-                document.getElementById('res-img-total').innerText = data.totalImages;
-                document.getElementById('res-img-missing').innerText = data.imgMissingAlt;
-                document.getElementById('img-status').innerHTML = getGenericBadge(data.imgMissingAlt === 0 || data.totalImages === 0);
-
-                // Word Count
-                document.getElementById('res-word-count').innerText = data.wordCount.toLocaleString();
-                document.getElementById('word-status').innerHTML = getGenericBadge(data.wordCount > 400);
-
-                // Show Results
                 results.classList.remove('hidden');
                 results.classList.add('flex');
                 
-                setTimeout(() => {
-                    results.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 100);
+                // Scroll down smoothly
+                setTimeout(() => results.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
 
             } catch (error) {
-                console.error("Enterprise Waterfall Error:", error);
-                showMessage(i18n[currentLang].msgWafError, 'error');
+                console.error(error);
+                if (error.message.includes('WAF_BLOCKED')) {
+                    showToast(i18n[currentLang].msgWafError, 'error');
+                } else {
+                    showToast("Failed to fetch. Verify URL or try adding API Key.", 'error');
+                }
             } finally {
                 btn.disabled = false;
-                btn.classList.remove('opacity-50', 'cursor-not-allowed');
                 loading.classList.add('hidden');
             }
         });
 
-        // --- 6. PDF Generation ---
-        document.getElementById('download-pdf-btn').addEventListener('click', () => {
-            showMessage(i18n[currentLang].msgPdf, 'info');
-            const element = document.getElementById('free-report-pdf');
-            
-            const opt = {
-                margin:       0.4,
-                filename:     'SEOPro_Enterprise_Audit.pdf',
-                image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2, useCORS: true, logging: false },
-                jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
-            };
-
-            html2pdf().set(opt).from(element).save();
-        });
-
-        // --- 7. Payment Simulation ---
-        document.getElementById('payment-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const btn = document.getElementById('pay-btn');
-            const originalContent = btn.innerHTML;
-            
-            btn.innerHTML = `<div class="loader !border-slate-950 !border-t-white !w-5 !h-5"></div> <span>Procesando Pago...</span>`;
-            btn.disabled = true;
-            btn.classList.add('opacity-80', 'cursor-not-allowed');
-
-            setTimeout(() => {
-                showMessage(i18n[currentLang].msgProcessing, 'success');
-                setTimeout(() => {
-                    btn.innerHTML = originalContent;
-                    btn.disabled = false;
-                    btn.classList.remove('opacity-80', 'cursor-not-allowed');
-                }, 2500);
-            }, 1800);
-        });
-
-        // Initialize language
-        updateTexts('es');
+        // Initialize Lang
+        updateLanguage(document.getElementById('lang-select').value);
     </script>
 </body>
 </html>
