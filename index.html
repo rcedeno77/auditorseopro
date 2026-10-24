@@ -233,6 +233,36 @@
                         </ul>
                         <p class="text-xs text-gray-500 mt-3">* Optimal SEO requires exactly one highly relevant H1 tag per page.</p>
                     </div>
+
+                    <!-- New: H2 Analysis -->
+                    <div class="bg-black/30 rounded-xl p-5 border border-white/5 relative">
+                        <div class="flex justify-between items-center mb-3">
+                            <h4 class="text-gray-300 font-semibold text-sm uppercase tracking-wider">H2 Tags</h4>
+                            <span id="h2-status" class="px-2 py-1 rounded text-xs font-bold bg-gray-800 text-gray-300">Status</span>
+                        </div>
+                        <p class="text-white text-3xl font-bold"><span id="res-h2-count">0</span></p>
+                        <p class="text-sm text-gray-500 mt-2">H2s structure your content hierarchy.</p>
+                    </div>
+
+                    <!-- New: Image Alt Analysis -->
+                    <div class="bg-black/30 rounded-xl p-5 border border-white/5 relative">
+                        <div class="flex justify-between items-center mb-3">
+                            <h4 class="text-gray-300 font-semibold text-sm uppercase tracking-wider">Image Alt Tags</h4>
+                            <span id="img-status" class="px-2 py-1 rounded text-xs font-bold bg-gray-800 text-gray-300">Status</span>
+                        </div>
+                        <p class="text-white text-xl font-medium"><span id="res-img-missing" class="text-red-400">0</span> <span class="text-gray-400 text-base font-normal">/ <span id="res-img-total">0</span> missing ALT</span></p>
+                        <p class="text-sm text-gray-500 mt-2">Crucial for accessibility & image SEO.</p>
+                    </div>
+
+                    <!-- New: Word Count Analysis -->
+                    <div class="bg-black/30 rounded-xl p-5 border border-white/5 md:col-span-2 relative">
+                        <div class="flex justify-between items-center mb-3">
+                            <h4 class="text-gray-300 font-semibold text-sm uppercase tracking-wider">Word Count</h4>
+                            <span id="word-status" class="px-2 py-1 rounded text-xs font-bold bg-gray-800 text-gray-300">Status</span>
+                        </div>
+                        <p class="text-white text-3xl font-bold"><span id="res-word-count">0</span> <span class="text-sm font-normal text-gray-400">words detected</span></p>
+                        <p class="text-sm text-gray-500 mt-2">Content depth is a major ranking factor (Ideal: 800+ words depending on search intent).</p>
+                    </div>
                 </div>
             </section>
 
@@ -307,6 +337,8 @@
                 heroSub: "Enter any URL to instantly reverse-engineer its meta tags, headings, and core on-page metrics. Professional grade analysis in seconds.",
                 btnAnalyze: "Analyze URL",
                 analyzing: "Extracting DOM and evaluating metrics...",
+                waterfallInit: "Initializing Proxy Waterfall...",
+                waterfallNext: "Bypassing firewall... Try proxy",
                 freeTitle: "Basic Audit Results",
                 btnPdf: "Save Basic PDF",
                 premiumTitle: "Unlock the Ultimate SEO Pro Report",
@@ -317,7 +349,7 @@
                 securePay: "256-bit Secure SSL Checkout",
                 footer: "© 2026 SEOPro Auditor. Created by elite digital strategists.",
                 msgProcessing: "Redirecting to secure payment gateway...",
-                msgError: "Could not fetch URL. It might block proxies or not exist.",
+                msgWafError: "Analysis failed. Severe WAF protection detected or site does not exist.",
                 msgPdf: "Generating PDF...",
                 statusGood: "GOOD",
                 statusWarn: "WARN",
@@ -332,6 +364,8 @@
                 heroSub: "Ingresa cualquier URL para aplicar ingeniería inversa a sus etiquetas, encabezados y métricas clave. Análisis de grado profesional en segundos.",
                 btnAnalyze: "Analizar URL",
                 analyzing: "Extrayendo DOM y evaluando métricas...",
+                waterfallInit: "Iniciando Cascada de Proxies...",
+                waterfallNext: "Evadiendo firewall... Intentando proxy",
                 freeTitle: "Resultados Básicos",
                 btnPdf: "Descargar PDF Básico",
                 premiumTitle: "Desbloquea el Informe SEO Pro Definitivo",
@@ -342,7 +376,7 @@
                 securePay: "Pago Seguro SSL 256-bit",
                 footer: "© 2026 SEOPro Auditor. Creado por estrategas digitales de élite.",
                 msgProcessing: "Redirigiendo a la pasarela de pago segura...",
-                msgError: "No se pudo obtener la URL. Podría bloquear proxies o no existir.",
+                msgWafError: "Análisis fallido. Protección WAF severa detectada o el sitio no existe.",
                 msgPdf: "Generando PDF...",
                 statusGood: "ÓPTIMO",
                 statusWarn: "ALERTA",
@@ -357,6 +391,8 @@
                 heroSub: "Entrez n'importe quelle URL pour rétro-concevoir instantanément ses balises meta, en-têtes et métriques. Analyse professionnelle en quelques secondes.",
                 btnAnalyze: "Analyser l'URL",
                 analyzing: "Extraction du DOM et évaluation...",
+                waterfallInit: "Initialisation de la cascade de proxy...",
+                waterfallNext: "Contournement du pare-feu... Essai proxy",
                 freeTitle: "Résultats de l'Audit de Base",
                 btnPdf: "Sauvegarder le PDF de Base",
                 premiumTitle: "Débloquez le Rapport SEO Pro Ultime",
@@ -367,7 +403,7 @@
                 securePay: "Paiement Sécurisé SSL 256 bits",
                 footer: "© 2026 SEOPro Auditor. Créé par l'élite numérique.",
                 msgProcessing: "Redirection vers la passerelle de paiement...",
-                msgError: "Impossible de récupérer l'URL. Elle bloque peut-être les proxys.",
+                msgWafError: "Échec. Protection WAF sévère détectée ou site inexistant.",
                 msgPdf: "Génération du PDF...",
                 statusGood: "BON",
                 statusWarn: "ATTENTION",
@@ -382,6 +418,8 @@
                 heroSub: "Geben Sie eine URL ein, um Meta-Tags, Überschriften und Kernmetriken sofort zu analysieren. Professionelle Analyse in Sekunden.",
                 btnAnalyze: "URL Analysieren",
                 analyzing: "DOM wird extrahiert und Metriken bewertet...",
+                waterfallInit: "Proxy-Wasserfall wird initialisiert...",
+                waterfallNext: "Firewall wird umgangen... Proxy versuchen",
                 freeTitle: "Basis-Audit Ergebnisse",
                 btnPdf: "Basis-PDF Speichern",
                 premiumTitle: "Schalten Sie den ultimativen SEO Pro Bericht frei",
@@ -392,7 +430,7 @@
                 securePay: "Sichere 256-Bit SSL-Kasse",
                 footer: "© 2026 SEOPro Auditor. Erstellt von Elite-Digitalstrategen.",
                 msgProcessing: "Weiterleitung zum sicheren Zahlungsgateway...",
-                msgError: "URL konnte nicht abgerufen werden. Proxys werden möglicherweise blockiert.",
+                msgWafError: "Analyse fehlgeschlagen. Strenge WAF-Schutzmaßnahmen oder Seite existiert nicht.",
                 msgPdf: "PDF wird generiert...",
                 statusGood: "GUT",
                 statusWarn: "WARNUNG",
@@ -407,6 +445,8 @@
                 heroSub: "Inserisci qualsiasi URL per decodificare istantaneamente meta tag, intestazioni e metriche. Analisi professionale in pochi secondi.",
                 btnAnalyze: "Analizza URL",
                 analyzing: "Estrazione del DOM e valutazione delle metriche...",
+                waterfallInit: "Inizializzazione Cascata Proxy...",
+                waterfallNext: "Elusione firewall... Prova proxy",
                 freeTitle: "Risultati Audit di Base",
                 btnPdf: "Salva PDF di Base",
                 premiumTitle: "Sblocca il Rapporto SEO Pro Definitivo",
@@ -417,7 +457,7 @@
                 securePay: "Pagamento Sicuro SSL 256-bit",
                 footer: "© 2026 SEOPro Auditor. Creato da strateghi digitali d'élite.",
                 msgProcessing: "Reindirizzamento al gateway di pagamento sicuro...",
-                msgError: "Impossibile recuperare l'URL. Potrebbe bloccare i proxy o non esistere.",
+                msgWafError: "Analisi fallita. Rilevata protezione WAF severa o sito inesistente.",
                 msgPdf: "Generazione PDF...",
                 statusGood: "OTTIMO",
                 statusWarn: "AVVISO",
@@ -432,6 +472,8 @@
                 heroSub: "Insira qualquer URL para fazer engenharia reversa instantânea de suas meta tags, títulos e métricas. Análise profissional em segundos.",
                 btnAnalyze: "Analisar URL",
                 analyzing: "Extraindo DOM e avaliando métricas...",
+                waterfallInit: "Inicializando Cascata de Proxy...",
+                waterfallNext: "Ignorando firewall... Tentando proxy",
                 freeTitle: "Resultados da Auditoria Básica",
                 btnPdf: "Salvar PDF Básico",
                 premiumTitle: "Desbloqueie o Relatório SEO Pro Definitivo",
@@ -442,7 +484,7 @@
                 securePay: "Checkout Seguro SSL 256-bit",
                 footer: "© 2026 SEOPro Auditor. Criado por estrategistas digitais de elite.",
                 msgProcessing: "Redirecionando para o gateway de pagamento seguro...",
-                msgError: "Não foi possível buscar a URL. Pode bloquear proxies ou não existir.",
+                msgWafError: "Falha na análise. Proteção WAF severa detectada ou site inexistente.",
                 msgPdf: "Gerando PDF...",
                 statusGood: "BOM",
                 statusWarn: "AVISO",
@@ -457,6 +499,8 @@
                 heroSub: "Введите любой URL для мгновенного анализа метатегов, заголовков и ключевых метрик. Профессиональный анализ за секунды.",
                 btnAnalyze: "Анализировать URL",
                 analyzing: "Извлечение DOM и оценка метрик...",
+                waterfallInit: "Инициализация каскада прокси...",
+                waterfallNext: "Обход брандмауэра... Прокси",
                 freeTitle: "Базовые Результаты Аудита",
                 btnPdf: "Сохранить Базовый PDF",
                 premiumTitle: "Разблокируйте Полный SEO Pro Отчет",
@@ -467,7 +511,7 @@
                 securePay: "Защищенная оплата 256-bit SSL",
                 footer: "© 2026 SEOPro Auditor. Создано элитными цифровыми стратегами.",
                 msgProcessing: "Перенаправление на безопасный платежный шлюз...",
-                msgError: "Не удалось получить URL. Возможно, блокирует прокси.",
+                msgWafError: "Ошибка анализа. Обнаружена строгая защита WAF или сайт не существует.",
                 msgPdf: "Генерация PDF...",
                 statusGood: "ОТЛИЧНО",
                 statusWarn: "ВНИМАНИЕ",
@@ -482,6 +526,8 @@
                 heroSub: "输入任何 URL 以立即对其元标签、标题和核心页面指标进行逆向工程。 几秒钟内完成专业级分析。",
                 btnAnalyze: "分析 URL",
                 analyzing: "提取 DOM 并评估指标...",
+                waterfallInit: "初始化代理瀑布流...",
+                waterfallNext: "绕过防火墙... 尝试代理",
                 freeTitle: "基础审核结果",
                 btnPdf: "保存基础 PDF",
                 premiumTitle: "解锁终极 SEO 专业报告",
@@ -492,7 +538,7 @@
                 securePay: "256位 SSL 安全结账",
                 footer: "© 2026 SEOPro Auditor. 由精英数字战略家创建。",
                 msgProcessing: "重定向至安全支付网关...",
-                msgError: "无法获取 URL。它可能阻止了代理或不存在。",
+                msgWafError: "分析失败。检测到严密的 WAF 保护或网站不存在。",
                 msgPdf: "正在生成 PDF...",
                 statusGood: "良好",
                 statusWarn: "警告",
@@ -532,32 +578,32 @@
             updateTexts(e.target.value);
         });
 
-        // --- 2. Custom Message Box (Replaces Alert) ---
+        // --- 2. Custom Message Box ---
         function showMessage(text, type = 'info') {
             const box = document.getElementById('message-box');
             const msgText = document.getElementById('msg-text');
             const icon = document.getElementById('msg-icon');
             
             msgText.innerText = text;
-            box.classList.remove('hidden-msg');
+            box.className = 'fixed top-5 left-1/2 transform -translate-x-1/2 z-50 glass-panel rounded-lg px-6 py-3 flex items-center gap-3 transition opacity-100 translate-y-0';
             
             if(type === 'error') {
-                box.classList.add('border', 'border-red-500/50');
+                box.classList.add('border-red-500/50');
                 icon.className = 'ph ph-warning-circle text-2xl text-red-500';
             } else if (type === 'success') {
-                box.classList.add('border', 'border-green-500/50');
+                box.classList.add('border-green-500/50');
                 icon.className = 'ph ph-check-circle text-2xl text-green-500';
             } else {
-                box.className = 'fixed top-5 left-1/2 transform -translate-x-1/2 z-50 glass-panel rounded-lg px-6 py-3 flex items-center gap-3 border border-blue-500/50';
+                box.classList.add('border-blue-500/50');
                 icon.className = 'ph ph-info text-2xl text-blue-400';
             }
 
             setTimeout(() => {
                 box.classList.add('hidden-msg');
-            }, 3500);
+            }, 4500);
         }
 
-        // --- 3. URL Logic & DOM Fetching ---
+        // --- 3. URL Logic & PROXY WATERFALL ---
         function normalizeUrl(url) {
             let cleanUrl = url.trim();
             if (!/^https?:\/\//i.test(cleanUrl)) {
@@ -566,36 +612,101 @@
             return cleanUrl;
         }
 
-        async function fetchHtmlWithProxy(url) {
-            // Using allorigins as a reliable public CORS proxy
-            const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
-            const response = await fetch(proxyUrl);
-            if (!response.ok) throw new Error('Network response was not ok');
-            const data = await response.json();
-            if(!data.contents) throw new Error('No content received');
-            return data.contents;
+        async function fetchWithWaterfall(url) {
+            const statusText = document.getElementById('t-analyzing');
+            const t = i18n[currentLang];
+            statusText.innerText = t.waterfallInit;
+
+            // Proxy Waterfall Definition
+            const proxies = [
+                { type: 'raw', url: (u) => `https://corsproxy.io/?${encodeURIComponent(u)}` },
+                { type: 'json', url: (u) => `https://api.allorigins.win/get?url=${encodeURIComponent(u)}` },
+                { type: 'raw', url: (u) => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(u)}` },
+                { type: 'raw', url: (u) => `https://api.cors.lol/?url=${encodeURIComponent(u)}` }
+            ];
+
+            for (let i = 0; i < proxies.length; i++) {
+                const proxy = proxies[i];
+                try {
+                    statusText.innerText = `${t.waterfallNext} ${i + 1}/${proxies.length}...`;
+                    const proxyUrl = proxy.url(url);
+                    const response = await fetch(proxyUrl, { cache: 'no-store' });
+                    
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    
+                    if (proxy.type === 'json') {
+                        const data = await response.json();
+                        if (!data.contents) throw new Error('No contents in JSON');
+                        return data.contents;
+                    } else {
+                        const html = await response.text();
+                        // Basic validation to ensure we didn't just get a proxy error page
+                        if (!html || html.trim() === '' || html.includes('Origin not allowed') || html.includes('Ray ID:')) {
+                            throw new Error('Invalid raw HTML response or WAF block');
+                        }
+                        return html;
+                    }
+                } catch (error) {
+                    console.warn(`Proxy ${i + 1} failed:`, error.message);
+                    // continue to the next proxy in the waterfall
+                }
+            }
+            
+            throw new Error('All proxies failed.');
         }
 
+        // --- 4. Deep DOM Analysis ---
         function analyzeDOM(htmlString) {
             const parser = new DOMParser();
             const doc = parser.parseFromString(htmlString, 'text/html');
 
+            // 1. Meta Data
             const titleElement = doc.querySelector('title');
             const title = titleElement ? titleElement.innerText.trim() : '';
 
             const descElement = doc.querySelector('meta[name="description"]');
             const description = descElement ? descElement.getAttribute('content').trim() : '';
 
+            // 2. Headings
             const h1Elements = doc.querySelectorAll('h1');
             const h1s = Array.from(h1Elements).map(el => el.innerText.trim()).filter(text => text.length > 0);
+            
+            const h2Elements = doc.querySelectorAll('h2');
+            const h2sCount = h2Elements.length;
 
-            return { title, description, h1s };
+            // 3. Images & Accessibility
+            const images = doc.querySelectorAll('img');
+            let imgMissingAlt = 0;
+            images.forEach(img => {
+                if (!img.hasAttribute('alt') || img.getAttribute('alt').trim() === '') {
+                    imgMissingAlt++;
+                }
+            });
+
+            // 4. Word Count Approximation
+            const bodyClone = doc.body ? doc.body.cloneNode(true) : doc.createElement('body');
+            const removeTags = bodyClone.querySelectorAll('script, style, noscript, svg, nav, footer');
+            removeTags.forEach(el => el.remove());
+            
+            const textContent = bodyClone.innerText || '';
+            const words = textContent.replace(/\s+/g, ' ').trim().split(' ').filter(word => word.length > 1);
+            const wordCount = words.length;
+
+            return { 
+                title, 
+                description, 
+                h1s, 
+                h2sCount, 
+                totalImages: images.length, 
+                imgMissingAlt, 
+                wordCount 
+            };
         }
 
-        // --- 4. UI Rendering Logic ---
-        function getStatusBadge(length, min, max, missing) {
+        // --- 5. UI Rendering & Badge Logic ---
+        function getStatusBadge(length, min, max, isMissing) {
             const t = i18n[currentLang];
-            if (missing) return `<span class="bg-red-900/50 text-red-300 px-2 py-1 rounded text-xs font-bold border border-red-500/30">${t.statusMissing}</span>`;
+            if (isMissing) return `<span class="bg-red-900/50 text-red-300 px-2 py-1 rounded text-xs font-bold border border-red-500/30">${t.statusMissing}</span>`;
             if (length >= min && length <= max) {
                 return `<span class="bg-green-900/50 text-green-300 px-2 py-1 rounded text-xs font-bold border border-green-500/30">${t.statusGood}</span>`;
             }
@@ -605,15 +716,23 @@
             return `<span class="bg-yellow-900/50 text-yellow-300 px-2 py-1 rounded text-xs font-bold border border-yellow-500/30">${t.statusWarn} (Too Short)</span>`;
         }
 
+        function getGenericBadge(condition, goodText = "GOOD", badText = "WARN") {
+            const t = i18n[currentLang];
+            if (condition) {
+                return `<span class="bg-green-900/50 text-green-300 px-2 py-1 rounded text-xs font-bold border border-green-500/30">${t.statusGood || goodText}</span>`;
+            }
+            return `<span class="bg-yellow-900/50 text-yellow-300 px-2 py-1 rounded text-xs font-bold border border-yellow-500/30">${t.statusWarn || badText}</span>`;
+        }
+
         document.getElementById('audit-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             
             const rawUrl = document.getElementById('url-input').value;
             const url = normalizeUrl(rawUrl);
-            
             const btn = document.getElementById('analyze-btn');
             const loading = document.getElementById('loading-state');
             const results = document.getElementById('results-container');
+            const t = i18n[currentLang];
             
             // UI Reset
             btn.disabled = true;
@@ -622,7 +741,7 @@
             results.classList.add('hidden');
 
             try {
-                const html = await fetchHtmlWithProxy(url);
+                const html = await fetchWithWaterfall(url);
                 const data = analyzeDOM(html);
 
                 // Populate UI
@@ -632,7 +751,7 @@
                 document.getElementById('res-title').innerText = data.title || '[No Title Tag Found]';
                 document.getElementById('res-title').className = data.title ? "text-white text-lg font-medium break-words mb-2" : "text-red-400 text-lg italic break-words mb-2";
                 document.getElementById('res-title-len').innerText = data.title.length;
-                document.getElementById('title-status').innerHTML = getStatusBadge(data.title.length, 50, 60, !data.title);
+                document.getElementById('title-status').innerHTML = getStatusBadge(data.title.length, 40, 65, !data.title);
 
                 // Description
                 document.getElementById('res-desc').innerText = data.description || '[No Meta Description Found]';
@@ -645,17 +764,14 @@
                 h1List.innerHTML = '';
                 document.getElementById('res-h1-count').innerText = data.h1s.length;
                 
-                const t = i18n[currentLang];
-                let h1StatusHtml = '';
                 if(data.h1s.length === 1) {
-                    h1StatusHtml = `<span class="bg-green-900/50 text-green-300 px-2 py-1 rounded text-xs font-bold border border-green-500/30">${t.statusGood}</span>`;
+                    document.getElementById('h1-status').innerHTML = `<span class="bg-green-900/50 text-green-300 px-2 py-1 rounded text-xs font-bold border border-green-500/30">${t.statusGood}</span>`;
                 } else if (data.h1s.length === 0) {
-                    h1StatusHtml = `<span class="bg-red-900/50 text-red-300 px-2 py-1 rounded text-xs font-bold border border-red-500/30">${t.statusMissing}</span>`;
+                    document.getElementById('h1-status').innerHTML = `<span class="bg-red-900/50 text-red-300 px-2 py-1 rounded text-xs font-bold border border-red-500/30">${t.statusMissing}</span>`;
                     h1List.innerHTML = `<li class="text-red-400 italic">No H1 tags found.</li>`;
                 } else {
-                    h1StatusHtml = `<span class="bg-yellow-900/50 text-yellow-300 px-2 py-1 rounded text-xs font-bold border border-yellow-500/30">${t.statusWarn} (Multiple H1s)</span>`;
+                    document.getElementById('h1-status').innerHTML = `<span class="bg-yellow-900/50 text-yellow-300 px-2 py-1 rounded text-xs font-bold border border-yellow-500/30">${t.statusWarn} (Multiple H1s)</span>`;
                 }
-                document.getElementById('h1-status').innerHTML = h1StatusHtml;
 
                 if (data.h1s.length > 0) {
                     data.h1s.forEach(h1 => {
@@ -665,71 +781,80 @@
                     });
                 }
 
+                // H2s
+                document.getElementById('res-h2-count').innerText = data.h2sCount;
+                document.getElementById('h2-status').innerHTML = getGenericBadge(data.h2sCount > 0);
+
+                // Images
+                document.getElementById('res-img-total').innerText = data.totalImages;
+                document.getElementById('res-img-missing').innerText = data.imgMissingAlt;
+                document.getElementById('img-status').innerHTML = getGenericBadge(data.imgMissingAlt === 0 || data.totalImages === 0);
+
+                // Word Count
+                document.getElementById('res-word-count').innerText = data.wordCount.toLocaleString();
+                document.getElementById('word-status').innerHTML = getGenericBadge(data.wordCount > 300);
+
                 // Show Results
                 results.classList.remove('hidden');
                 results.classList.add('flex');
                 
-                // Scroll to results
                 setTimeout(() => {
                     results.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }, 100);
 
             } catch (error) {
-                console.error(error);
-                showMessage(i18n[currentLang].msgError, 'error');
+                console.error("Waterfall Error:", error);
+                showMessage(i18n[currentLang].msgWafError, 'error');
             } finally {
                 btn.disabled = false;
                 btn.classList.remove('opacity-50', 'cursor-not-allowed');
                 loading.classList.add('hidden');
+                document.getElementById('t-analyzing').innerText = i18n[currentLang].analyzing; // Reset text
             }
         });
 
-        // --- 5. PDF Generation ---
+        // --- 6. PDF Generation ---
         document.getElementById('download-pdf-btn').addEventListener('click', () => {
             showMessage(i18n[currentLang].msgPdf, 'info');
             const element = document.getElementById('free-report-pdf');
             
-            // Add a temporary solid background for PDF generation because glassmorphism doesn't render well in html2pdf
-            element.style.backgroundColor = '#111827'; // Tailwind gray-900
+            // Temporary background for html2pdf
+            element.style.backgroundColor = '#111827'; 
             
             const opt = {
-                margin:       0.5,
-                filename:     'SEO_Basic_Audit.pdf',
+                margin:       0.4,
+                filename:     'SEO_Audit_Report.pdf',
                 image:        { type: 'jpeg', quality: 0.98 },
                 html2canvas:  { scale: 2, useCORS: true, logging: false },
                 jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
             };
 
             html2pdf().set(opt).from(element).save().then(() => {
-                element.style.backgroundColor = ''; // Restore original style
+                element.style.backgroundColor = ''; 
             });
         });
 
-        // --- 6. Payment / Form Simulation ---
+        // --- 7. Payment Simulation ---
         document.getElementById('payment-form').addEventListener('submit', (e) => {
             e.preventDefault();
             const btn = document.getElementById('pay-btn');
             const originalContent = btn.innerHTML;
             
-            // Loading state
             btn.innerHTML = `<div class="loader !border-black !border-t-white !w-5 !h-5"></div> <span>Processing...</span>`;
             btn.disabled = true;
             btn.classList.add('opacity-80', 'cursor-not-allowed');
 
-            // Simulate API call and redirect
             setTimeout(() => {
                 showMessage(i18n[currentLang].msgProcessing, 'success');
-                // Revert button (in a real app this would redirect to Stripe/Visa checkout)
                 setTimeout(() => {
                     btn.innerHTML = originalContent;
                     btn.disabled = false;
                     btn.classList.remove('opacity-80', 'cursor-not-allowed');
-                    // Simulating redirect: window.location.href = 'https://checkout.stripe.com/...';
                 }, 2000);
             }, 1500);
         });
 
-        // Init language based on browser or default to English
+        // Initialize language
         const browserLang = navigator.language.slice(0, 2);
         if (i18n[browserLang]) {
             document.getElementById('lang-select').value = browserLang;
