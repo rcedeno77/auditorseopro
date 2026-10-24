@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEOPro Auditor | Advanced On-Page Analysis</title>
+    <title>SEOPro Elite | Enterprise On-Page Auditor</title>
     
+    <!-- Dynamic SVG Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2310B981'/%3E%3Cstop offset='100%25' stop-color='%2306B6D4'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='%23090d16'/%3E%3Cpath d='M8 22l6-8 5 5 7-10' fill='none' stroke='url(%23g)' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='26' cy='9' r='2' fill='%2310B981'/%3E%3C/svg%3E">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -19,11 +22,15 @@
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
                     },
                     colors: {
-                        glass: 'rgba(255, 255, 255, 0.05)',
-                        glassBorder: 'rgba(255, 255, 255, 0.1)',
-                        premium: '#f59e0b',
+                        brandDark: '#07090e',
+                        brandCard: 'rgba(15, 23, 42, 0.65)',
+                        brandBorder: 'rgba(255, 255, 255, 0.08)',
+                        emeraldNeon: '#10B981',
+                        cyanNeon: '#06B6D4',
+                        premiumGold: '#f59e0b',
                     }
                 }
             }
@@ -38,33 +45,38 @@
 
     <style>
         body {
-            background: linear-gradient(135deg, #0f172a 0%, #000000 100%);
+            background: radial-gradient(circle at 50% 0%, #111e38 0%, #07090e 70%);
             background-attachment: fixed;
-            color: #e2e8f0;
+            color: #f1f5f9;
             min-height: 100vh;
+            font-family: 'Inter', sans-serif;
         }
 
-        /* Glassmorphism utilities */
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Glassmorphism 10k Look */
         .glass-panel {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            background: rgba(13, 20, 36, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
 
         .glass-input {
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(3, 7, 18, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.1);
             color: white;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .glass-input:focus {
             outline: none;
-            border-color: #3b82f6;
-            background: rgba(0, 0, 0, 0.5);
-            box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+            border-color: #10B981;
+            background: rgba(3, 7, 18, 0.9);
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.2);
         }
 
         /* Custom Scrollbar */
@@ -72,24 +84,24 @@
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.2);
+            background: #07090e;
         }
         ::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.15);
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(16, 185, 129, 0.5);
         }
 
-        /* Loading Spinner Animation */
+        /* Loader */
         .loader {
             border: 3px solid rgba(255,255,255,0.1);
-            border-top: 3px solid #3b82f6;
+            border-top: 3px solid #10B981;
             border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            animation: spin 1s linear infinite;
+            width: 28px;
+            height: 28px;
+            animation: spin 0.8s linear infinite;
         }
 
         @keyframes spin {
@@ -97,226 +109,257 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Premium Shimmer Effect */
+        /* Shimmer */
         .shimmer {
-            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0) 100%);
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(16,185,129,0.08) 50%, rgba(255,255,255,0) 100%);
             background-size: 200% 100%;
-            animation: shimmer 2s infinite linear;
+            animation: shimmer 2.5s infinite linear;
         }
         @keyframes shimmer {
             0% { background-position: -200% 0; }
             100% { background-position: 200% 0; }
         }
-        
+
         /* Message Box */
         #message-box {
-            transition: opacity 0.3s ease, transform 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .hidden-msg {
             opacity: 0;
-            transform: translateY(-20px);
+            transform: translateY(-30px) scale(0.95);
             pointer-events: none;
         }
     </style>
 </head>
-<body class="antialiased font-sans flex flex-col items-center py-10 px-4 sm:px-6 lg:px-8">
+<body class="antialiased flex flex-col items-center py-8 px-4 sm:px-6 lg:px-8">
 
     <!-- Message Box (replaces alert) -->
-    <div id="message-box" class="fixed top-5 left-1/2 transform -translate-x-1/2 z-50 hidden-msg glass-panel rounded-lg px-6 py-3 flex items-center gap-3">
-        <i class="ph ph-info text-2xl text-blue-400" id="msg-icon"></i>
-        <span id="msg-text" class="text-sm font-medium"></span>
+    <div id="message-box" class="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 hidden-msg glass-panel rounded-xl px-6 py-4 flex items-center gap-3 border border-emerald-500/30 shadow-2xl">
+        <div id="msg-icon-wrapper" class="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center text-emerald-400">
+            <i class="ph ph-info text-xl" id="msg-icon"></i>
+        </div>
+        <span id="msg-text" class="text-sm font-medium text-white"></span>
     </div>
 
     <!-- Header & Language Switcher -->
-    <header class="w-full max-w-5xl flex justify-between items-center mb-12">
-        <div class="flex items-center gap-2">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg shadow-blue-500/20">
-                <i class="ph ph-magnifying-glass text-white text-xl font-bold"></i>
+    <header class="w-full max-w-6xl flex justify-between items-center mb-10">
+        <div class="flex items-center gap-3">
+            <!-- Professional SVG Logo -->
+            <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-emerald-500 to-cyan-500 p-[1px] shadow-lg shadow-emerald-500/20">
+                <div class="w-full h-full bg-[#07090e] rounded-[11px] flex items-center justify-center">
+                    <svg class="w-6 h-6 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+                        <polyline points="16 7 22 7 22 13"></polyline>
+                    </svg>
+                </div>
             </div>
-            <h1 class="text-2xl font-bold tracking-tight text-white">SEO<span class="text-blue-400">Pro</span></h1>
+            <div>
+                <span class="text-xl font-black tracking-tight text-white font-heading">SEO<span class="text-emerald-400">PRO</span></span>
+                <span class="block text-[10px] uppercase tracking-widest text-gray-400 font-semibold">Enterprise Auditor</span>
+            </div>
         </div>
         
         <div class="relative group">
-            <select id="lang-select" class="appearance-none bg-white/5 border border-white/10 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 pr-8 cursor-pointer outline-none glass-panel">
-                <option value="en" class="bg-gray-800">🇺🇸 English</option>
-                <option value="es" class="bg-gray-800">🇪🇸 Español</option>
-                <option value="fr" class="bg-gray-800">🇫🇷 Français</option>
-                <option value="de" class="bg-gray-800">🇩🇪 Deutsch</option>
-                <option value="it" class="bg-gray-800">🇮🇹 Italiano</option>
-                <option value="pt" class="bg-gray-800">🇵🇹 Português</option>
-                <option value="ru" class="bg-gray-800">🇷🇺 Русский</option>
-                <option value="zh" class="bg-gray-800">🇨🇳 中文</option>
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-emerald-400">
+                <i class="ph ph-globe text-base"></i>
+            </div>
+            <select id="lang-select" class="appearance-none bg-slate-900/80 border border-white/10 text-white text-xs sm:text-sm rounded-xl focus:ring-emerald-500 focus:border-emerald-500 block py-2.5 pl-9 pr-8 cursor-pointer outline-none glass-panel shadow-md">
+                <option value="en" class="bg-slate-900">🇺🇸 English</option>
+                <option value="es" class="bg-slate-900">🇪🇸 Español</option>
+                <option value="fr" class="bg-slate-900">🇫🇷 Français</option>
+                <option value="de" class="bg-slate-900">🇩🇪 Deutsch</option>
+                <option value="it" class="bg-slate-900">🇮🇹 Italiano</option>
+                <option value="pt" class="bg-slate-900">🇵🇹 Português</option>
+                <option value="ru" class="bg-slate-900">🇷🇺 Русский</option>
+                <option value="zh" class="bg-slate-900">🇨🇳 中文</option>
             </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white">
-                <i class="ph ph-caret-down"></i>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2.5 text-gray-400">
+                <i class="ph ph-caret-down text-xs"></i>
             </div>
         </div>
     </header>
 
     <!-- Main Auditor Input Area -->
-    <main class="w-full max-w-5xl flex flex-col gap-8">
+    <main class="w-full max-w-6xl flex flex-col gap-8">
         
-        <section class="glass-panel rounded-2xl p-8 sm:p-12 text-center relative overflow-hidden">
-            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
+        <section class="glass-panel rounded-3xl p-8 sm:p-14 text-center relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-emerald-500 via-cyan-500 to-indigo-500"></div>
             
-            <h2 id="t-hero-title" class="text-3xl sm:text-5xl font-extrabold text-white mb-4 tracking-tight">Deep On-Page SEO Auditor</h2>
-            <p id="t-hero-sub" class="text-gray-400 text-lg max-w-2xl mx-auto mb-8">Enter any URL to instantly reverse-engineer its meta tags, headings, and core on-page metrics. Professional grade analysis in seconds.</p>
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold mb-6 tracking-wide uppercase">
+                <i class="ph ph-lightning text-sm"></i> <span id="t-badge">AI-Powered DOM & Conversion Engine</span>
+            </div>
+
+            <h2 id="t-hero-title" class="text-3xl sm:text-5xl font-black text-white mb-5 tracking-tight font-heading">Deep On-Page SEO Auditor</h2>
+            <p id="t-hero-sub" class="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto mb-10 leading-relaxed font-normal">Enter any URL (e.g. <span class="text-emerald-400 font-mono">modojapon.com</span>) to instantly reverse-engineer its technical architecture, HTML hierarchy, and sales performance indicators.</p>
             
             <form id="audit-form" class="relative max-w-3xl mx-auto flex flex-col sm:flex-row gap-4">
                 <div class="relative flex-grow">
-                    <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
-                        <i class="ph ph-link text-gray-400 text-xl"></i>
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-gray-400">
+                        <i class="ph ph-link text-xl"></i>
                     </div>
-                    <input type="text" id="url-input" class="glass-input block w-full pl-12 pr-4 py-4 rounded-xl text-lg placeholder-gray-500 transition" placeholder="midominio.com" required autocomplete="off">
+                    <input type="text" id="url-input" class="glass-input block w-full pl-12 pr-4 py-4 rounded-2xl text-base placeholder-gray-500 shadow-inner" placeholder="modojapon.com" required autocomplete="off">
                 </div>
-                <button type="submit" id="analyze-btn" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold py-4 px-8 rounded-xl shadow-lg shadow-blue-500/30 transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2 whitespace-nowrap">
+                <button type="submit" id="analyze-btn" class="bg-gradient-to-r from-emerald-500 to-cyan-600 hover:from-emerald-400 hover:to-cyan-500 text-slate-950 font-extrabold py-4 px-8 rounded-2xl shadow-lg shadow-emerald-500/25 transition-all transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2.5 whitespace-nowrap cursor-pointer">
                     <i class="ph ph-rocket-launch text-xl"></i>
-                    <span id="t-btn-analyze">Analyze URL</span>
+                    <span id="t-btn-analyze">Run Deep Audit</span>
                 </button>
             </form>
 
             <!-- Loading State -->
-            <div id="loading-state" class="hidden mt-8 flex flex-col items-center justify-center gap-3">
+            <div id="loading-state" class="hidden mt-10 flex flex-col items-center justify-center gap-3">
                 <div class="loader"></div>
-                <p id="t-analyzing" class="text-blue-400 text-sm font-medium animate-pulse">Extracting DOM and evaluating metrics...</p>
+                <p id="t-analyzing" class="text-emerald-400 text-sm font-semibold tracking-wide animate-pulse">Initializing Proxy Waterfall & parsing DOM structure...</p>
             </div>
         </section>
 
         <!-- Results Container (Hidden initially) -->
         <div id="results-container" class="hidden flex-col gap-8 w-full">
             
-            <!-- Free Basic Report -->
-            <section id="free-report-pdf" class="glass-panel rounded-2xl p-6 sm:p-8 relative">
-                <div class="flex justify-between items-start mb-6 border-b border-white/10 pb-4">
-                    <div>
-                        <h3 id="t-free-title" class="text-2xl font-bold text-white flex items-center gap-2">
-                            <i class="ph ph-check-circle text-green-400"></i>
-                            Basic Audit Results
-                        </h3>
-                        <p class="text-gray-400 text-sm mt-1">Target: <span id="res-url" class="text-blue-300 font-mono"></span></p>
+            <!-- Executive Overview Score Bar -->
+            <div class="glass-panel rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 border-l-4 border-emerald-500">
+                <div class="flex items-center gap-4 text-left">
+                    <div class="w-16 h-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl font-black font-heading shadow-lg">
+                        <span id="res-score">84</span>
                     </div>
-                    <button id="download-pdf-btn" class="flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-white px-4 py-2 rounded-lg text-sm transition font-medium">
-                        <i class="ph ph-download-simple"></i>
-                        <span id="t-btn-pdf">Save Basic PDF</span>
+                    <div>
+                        <h3 class="text-lg font-bold text-white font-heading">On-Page Health Index</h3>
+                        <p class="text-sm text-gray-400">Evaluated target: <span id="res-url" class="text-emerald-300 font-mono font-semibold"></span></p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3 w-full md:w-auto justify-end">
+                    <button id="download-pdf-btn" class="flex-1 md:flex-initial flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-white px-5 py-3 rounded-xl text-sm transition font-semibold shadow-md cursor-pointer">
+                        <i class="ph ph-file-pdf text-emerald-400 text-lg"></i>
+                        <span id="t-btn-pdf">Download Free Report (PDF)</span>
                     </button>
+                </div>
+            </div>
+
+            <!-- Free Basic Report Grid -->
+            <section id="free-report-pdf" class="glass-panel rounded-3xl p-6 sm:p-10 relative">
+                <div class="flex justify-between items-center mb-8 border-b border-white/10 pb-5">
+                    <div>
+                        <h3 id="t-free-title" class="text-2xl font-black text-white flex items-center gap-2.5 font-heading">
+                            <i class="ph ph-shield-check text-emerald-400 text-2xl"></i>
+                            Comprehensive Audit Metrics
+                        </h3>
+                        <p class="text-gray-400 text-sm mt-1">Foundational SEO and structural parsing report.</p>
+                    </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Title Tag Analysis -->
-                    <div class="bg-black/30 rounded-xl p-5 border border-white/5 relative">
+                    <div class="bg-black/30 rounded-2xl p-6 border border-white/5 relative">
                         <div class="flex justify-between items-center mb-3">
-                            <h4 class="text-gray-300 font-semibold text-sm uppercase tracking-wider">Title Tag</h4>
-                            <span id="title-status" class="px-2 py-1 rounded text-xs font-bold bg-gray-800 text-gray-300">Status</span>
+                            <h4 class="text-gray-300 font-bold text-xs uppercase tracking-wider">Title Tag</h4>
+                            <span id="title-status" class="px-2.5 py-1 rounded-lg text-xs font-extrabold bg-slate-800 text-gray-300">Status</span>
                         </div>
-                        <p id="res-title" class="text-white text-lg font-medium break-words mb-2"></p>
-                        <p class="text-sm text-gray-500">Length: <span id="res-title-len" class="text-gray-300 font-mono">0</span> chars <span class="text-xs">(Optimal: 50-60)</span></p>
+                        <p id="res-title" class="text-white text-base font-semibold break-words mb-3"></p>
+                        <p class="text-xs text-gray-400">Length: <span id="res-title-len" class="text-emerald-400 font-mono font-bold">0</span> chars <span class="text-gray-500">(Optimal: 50-60)</span></p>
                     </div>
 
                     <!-- Meta Description Analysis -->
-                    <div class="bg-black/30 rounded-xl p-5 border border-white/5 relative">
+                    <div class="bg-black/30 rounded-2xl p-6 border border-white/5 relative">
                         <div class="flex justify-between items-center mb-3">
-                            <h4 class="text-gray-300 font-semibold text-sm uppercase tracking-wider">Meta Description</h4>
-                            <span id="desc-status" class="px-2 py-1 rounded text-xs font-bold bg-gray-800 text-gray-300">Status</span>
+                            <h4 class="text-gray-300 font-bold text-xs uppercase tracking-wider">Meta Description</h4>
+                            <span id="desc-status" class="px-2.5 py-1 rounded-lg text-xs font-extrabold bg-slate-800 text-gray-300">Status</span>
                         </div>
-                        <p id="res-desc" class="text-white text-md break-words mb-2"></p>
-                        <p class="text-sm text-gray-500">Length: <span id="res-desc-len" class="text-gray-300 font-mono">0</span> chars <span class="text-xs">(Optimal: 150-160)</span></p>
+                        <p id="res-desc" class="text-white text-sm break-words mb-3 leading-relaxed"></p>
+                        <p class="text-xs text-gray-400">Length: <span id="res-desc-len" class="text-emerald-400 font-mono font-bold">0</span> chars <span class="text-gray-500">(Optimal: 120-160)</span></p>
                     </div>
 
                     <!-- H1 Analysis -->
-                    <div class="bg-black/30 rounded-xl p-5 border border-white/5 md:col-span-2">
+                    <div class="bg-black/30 rounded-2xl p-6 border border-white/5 md:col-span-2">
                         <div class="flex justify-between items-center mb-3">
-                            <h4 class="text-gray-300 font-semibold text-sm uppercase tracking-wider">H1 Headings (<span id="res-h1-count">0</span>)</h4>
-                            <span id="h1-status" class="px-2 py-1 rounded text-xs font-bold bg-gray-800 text-gray-300">Status</span>
+                            <h4 class="text-gray-300 font-bold text-xs uppercase tracking-wider">H1 Headings (<span id="res-h1-count">0</span>)</h4>
+                            <span id="h1-status" class="px-2.5 py-1 rounded-lg text-xs font-extrabold bg-slate-800 text-gray-300">Status</span>
                         </div>
-                        <ul id="res-h1-list" class="list-disc list-inside text-white space-y-1 text-sm text-gray-300">
+                        <ul id="res-h1-list" class="list-disc list-inside text-white space-y-1.5 text-sm text-gray-200">
                             <!-- Injected dynamically -->
                         </ul>
-                        <p class="text-xs text-gray-500 mt-3">* Optimal SEO requires exactly one highly relevant H1 tag per page.</p>
+                        <p class="text-[11px] text-gray-500 mt-4">* Top-tier SEO architecture requires exactly one prominent H1 tag containing core target keywords.</p>
                     </div>
 
-                    <!-- New: H2 Analysis -->
-                    <div class="bg-black/30 rounded-xl p-5 border border-white/5 relative">
+                    <!-- H2 Analysis -->
+                    <div class="bg-black/30 rounded-2xl p-6 border border-white/5 relative">
                         <div class="flex justify-between items-center mb-3">
-                            <h4 class="text-gray-300 font-semibold text-sm uppercase tracking-wider">H2 Tags</h4>
-                            <span id="h2-status" class="px-2 py-1 rounded text-xs font-bold bg-gray-800 text-gray-300">Status</span>
+                            <h4 class="text-gray-300 font-bold text-xs uppercase tracking-wider">H2 Subheadings</h4>
+                            <span id="h2-status" class="px-2.5 py-1 rounded-lg text-xs font-extrabold bg-slate-800 text-gray-300">Status</span>
                         </div>
-                        <p class="text-white text-3xl font-bold"><span id="res-h2-count">0</span></p>
-                        <p class="text-sm text-gray-500 mt-2">H2s structure your content hierarchy.</p>
+                        <p class="text-white text-3xl font-extrabold font-heading"><span id="res-h2-count">0</span></p>
+                        <p class="text-xs text-gray-400 mt-2">Essential for thematic sub-sections and user scanning.</p>
                     </div>
 
-                    <!-- New: Image Alt Analysis -->
-                    <div class="bg-black/30 rounded-xl p-5 border border-white/5 relative">
+                    <!-- Image Alt Analysis -->
+                    <div class="bg-black/30 rounded-2xl p-6 border border-white/5 relative">
                         <div class="flex justify-between items-center mb-3">
-                            <h4 class="text-gray-300 font-semibold text-sm uppercase tracking-wider">Image Alt Tags</h4>
-                            <span id="img-status" class="px-2 py-1 rounded text-xs font-bold bg-gray-800 text-gray-300">Status</span>
+                            <h4 class="text-gray-300 font-bold text-xs uppercase tracking-wider">Image Alt Attributes</h4>
+                            <span id="img-status" class="px-2.5 py-1 rounded-lg text-xs font-extrabold bg-slate-800 text-gray-300">Status</span>
                         </div>
-                        <p class="text-white text-xl font-medium"><span id="res-img-missing" class="text-red-400">0</span> <span class="text-gray-400 text-base font-normal">/ <span id="res-img-total">0</span> missing ALT</span></p>
-                        <p class="text-sm text-gray-500 mt-2">Crucial for accessibility & image SEO.</p>
+                        <p class="text-white text-lg font-bold"><span id="res-img-missing" class="text-rose-400 font-extrabold">0</span> <span class="text-gray-400 text-sm font-normal">/ <span id="res-img-total">0</span> missing ALT tag</span></p>
+                        <p class="text-xs text-gray-400 mt-2">Crucial for screen readers and Google Image search ranking.</p>
                     </div>
 
-                    <!-- New: Word Count Analysis -->
-                    <div class="bg-black/30 rounded-xl p-5 border border-white/5 md:col-span-2 relative">
+                    <!-- Word Count Analysis -->
+                    <div class="bg-black/30 rounded-2xl p-6 border border-white/5 md:col-span-2 relative">
                         <div class="flex justify-between items-center mb-3">
-                            <h4 class="text-gray-300 font-semibold text-sm uppercase tracking-wider">Word Count</h4>
-                            <span id="word-status" class="px-2 py-1 rounded text-xs font-bold bg-gray-800 text-gray-300">Status</span>
+                            <h4 class="text-gray-300 font-bold text-xs uppercase tracking-wider">Content Depth (Word Count)</h4>
+                            <span id="word-status" class="px-2.5 py-1 rounded-lg text-xs font-extrabold bg-slate-800 text-gray-300">Status</span>
                         </div>
-                        <p class="text-white text-3xl font-bold"><span id="res-word-count">0</span> <span class="text-sm font-normal text-gray-400">words detected</span></p>
-                        <p class="text-sm text-gray-500 mt-2">Content depth is a major ranking factor (Ideal: 800+ words depending on search intent).</p>
+                        <p class="text-white text-3xl font-extrabold font-heading"><span id="res-word-count">0</span> <span class="text-sm font-normal text-gray-400">words indexed</span></p>
+                        <p class="text-xs text-gray-400 mt-2">Comprehensive topical depth significantly boosts organic ranking power (Recommended: 800+ words).</p>
                     </div>
                 </div>
             </section>
 
             <!-- Premium Conversion Funnel ($9) -->
-            <section class="relative rounded-2xl border border-premium/30 overflow-hidden shadow-2xl shadow-premium/10 mt-4">
-                <!-- Blurred background layer simulating depth -->
-                <div class="absolute inset-0 bg-[#1e150a] opacity-95"></div>
-                <div class="absolute inset-0 shimmer opacity-20 pointer-events-none"></div>
+            <section class="relative rounded-3xl border border-emerald-500/40 overflow-hidden shadow-2xl shadow-emerald-500/10 mt-4">
+                <div class="absolute inset-0 bg-gradient-to-b from-[#0f172a] via-[#090d16] to-[#04060a] opacity-98"></div>
+                <div class="absolute inset-0 shimmer opacity-25 pointer-events-none"></div>
                 
-                <div class="relative z-10 p-8 sm:p-10 text-center flex flex-col items-center">
+                <div class="relative z-10 p-8 sm:p-12 text-center flex flex-col items-center">
                     
-                    <div class="w-16 h-16 rounded-full bg-premium/20 flex items-center justify-center mb-4 border border-premium/50 shadow-[0_0_30px_rgba(245,158,11,0.3)]">
-                        <i class="ph ph-lock-key text-3xl text-premium"></i>
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 flex items-center justify-center mb-5 border border-emerald-500/40 shadow-[0_0_35px_rgba(16,185,129,0.3)]">
+                        <i class="ph ph-lock-key-open text-3xl text-emerald-400"></i>
                     </div>
 
-                    <h3 id="t-premium-title" class="text-2xl sm:text-3xl font-bold text-white mb-3">Unlock the Ultimate SEO Pro Report</h3>
-                    <p id="t-premium-desc" class="text-gray-300 max-w-2xl mx-auto mb-8 text-sm sm:text-base leading-relaxed">
-                        You're only seeing 5% of the data. Our elite analysis tools have mapped over <strong>35 critical ranking factors</strong> (Canonical tags, Schema Markup, Open Graph, Core Web Vitals simulation, keyword density matrix, and UI/UX conversion bottlenecks). 
+                    <h3 id="t-premium-title" class="text-2xl sm:text-4xl font-black text-white mb-4 font-heading tracking-tight">Unlock the Ultimate SEO Pro Blueprint</h3>
+                    <p id="t-premium-desc" class="text-gray-300 max-w-2xl mx-auto mb-10 text-sm sm:text-base leading-relaxed">
+                        You have unlocked the basic surface scan (5% of total capability). Our elite intelligence core has mapped <strong>35 advanced conversion and ranking vectors</strong> (including Schema Markup validation, Open Graph social parity, Core Web Vitals speed simulation, keyword cannibalization matrices, and conversion rate optimization bottlenecks).
                         <br><br>
-                        <span class="text-premium font-semibold">Get the definitive PDF blueprint to instantly outrank your competitors and multiply your sales for just $9.</span>
+                        <span class="text-emerald-400 font-bold">Get the definitive enterprise-grade PDF report and 10x your organic revenue today for just $9.00 USD.</span>
                     </p>
 
                     <!-- Payment / Lead Capture Form -->
-                    <form id="payment-form" class="w-full max-w-md bg-black/40 p-6 rounded-xl border border-white/5 backdrop-blur-md">
-                        <div class="space-y-4 mb-6 text-left">
+                    <form id="payment-form" class="w-full max-w-md bg-black/50 p-7 rounded-2xl border border-white/10 backdrop-blur-xl shadow-2xl text-left">
+                        <div class="space-y-4 mb-6">
                             <div>
-                                <label id="t-label-name" class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wide">Full Name</label>
+                                <label id="t-label-name" class="block text-xs font-bold text-gray-300 mb-1.5 uppercase tracking-wider">Full Name</label>
                                 <div class="relative">
-                                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                        <i class="ph ph-user text-gray-500"></i>
+                                    <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-gray-500">
+                                        <i class="ph ph-user text-base"></i>
                                     </div>
-                                    <input type="text" id="cust-name" required class="glass-input block w-full pl-10 pr-3 py-3 rounded-lg text-sm" placeholder="John Doe">
+                                    <input type="text" id="cust-name" required class="glass-input block w-full pl-10 pr-4 py-3.5 rounded-xl text-sm" placeholder="Alexander Wright">
                                 </div>
                             </div>
                             <div>
-                                <label id="t-label-email" class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wide">Professional Email</label>
+                                <label id="t-label-email" class="block text-xs font-bold text-gray-300 mb-1.5 uppercase tracking-wider">Professional Email</label>
                                 <div class="relative">
-                                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                        <i class="ph ph-envelope-simple text-gray-500"></i>
+                                    <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-gray-500">
+                                        <i class="ph ph-envelope-simple text-base"></i>
                                     </div>
-                                    <input type="email" id="cust-email" required class="glass-input block w-full pl-10 pr-3 py-3 rounded-lg text-sm" placeholder="john@company.com">
+                                    <input type="email" id="cust-email" required class="glass-input block w-full pl-10 pr-4 py-3.5 rounded-xl text-sm" placeholder="alex@company.com">
                                 </div>
                             </div>
                         </div>
 
-                        <button type="submit" id="pay-btn" class="w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-400 hover:to-amber-500 text-black font-bold py-3 px-4 rounded-lg shadow-lg transform hover:scale-[1.02] transition-all flex items-center justify-center gap-2">
+                        <button type="submit" id="pay-btn" class="w-full bg-gradient-to-r from-emerald-400 to-cyan-500 hover:from-emerald-300 hover:to-cyan-400 text-slate-950 font-black py-4 px-6 rounded-xl shadow-lg shadow-emerald-500/30 transform hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2.5 cursor-pointer text-base">
                             <i class="ph ph-credit-card text-xl"></i>
-                            <span id="t-btn-pay">Unlock Full Report - $9.00</span>
+                            <span id="t-btn-pay">Unlock Full Enterprise Report - $9.00</span>
                         </button>
 
-                        <div class="mt-4 flex items-center justify-center gap-3 text-gray-500">
-                            <i class="ph ph-stripe-logo text-3xl"></i>
-                            <span class="text-xs">|</span>
-                            <span id="t-secure-pay" class="text-xs flex items-center gap-1"><i class="ph ph-lock-key"></i> 256-bit Secure SSL Checkout</span>
+                        <div class="mt-5 flex items-center justify-center gap-3 text-gray-400 pt-2 border-t border-white/5">
+                            <i class="ph ph-shield-check text-emerald-400 text-xl"></i>
+                            <span id="t-secure-pay" class="text-xs font-medium">Visa, Mastercard & Apple Pay • 256-bit Secure SSL Checkout</span>
                         </div>
                     </form>
                 </div>
@@ -324,227 +367,240 @@
         </div>
     </main>
 
-    <footer class="w-full max-w-5xl mt-16 border-t border-white/10 pt-6 text-center text-sm text-gray-500 pb-10">
-        <p id="t-footer">&copy; 2026 SEOPro Auditor. Created by elite digital strategists.</p>
+    <footer class="w-full max-w-6xl mt-20 border-t border-white/10 pt-8 text-center text-xs text-gray-500 pb-12 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p id="t-footer">&copy; 2026 SEOPro Elite Agency. All rights reserved.</p>
+        <div class="flex items-center gap-6 text-gray-400">
+            <span class="hover:text-emerald-400 transition cursor-pointer">Privacy Policy</span>
+            <span class="hover:text-emerald-400 transition cursor-pointer">Terms of Service</span>
+            <span class="hover:text-emerald-400 transition cursor-pointer">Enterprise API</span>
+        </div>
     </footer>
 
     <!-- JavaScript Logic -->
     <script>
-        // --- 1. Internationalization (i18n) ---
+        // --- 1. Internationalization (i18n) - 8 Languages ---
         const i18n = {
             en: {
+                badge: "AI-Powered DOM & Conversion Engine",
                 heroTitle: "Deep On-Page SEO Auditor",
-                heroSub: "Enter any URL to instantly reverse-engineer its meta tags, headings, and core on-page metrics. Professional grade analysis in seconds.",
-                btnAnalyze: "Analyze URL",
-                analyzing: "Extracting DOM and evaluating metrics...",
-                waterfallInit: "Initializing Proxy Waterfall...",
-                waterfallNext: "Bypassing firewall... Try proxy",
-                freeTitle: "Basic Audit Results",
-                btnPdf: "Save Basic PDF",
-                premiumTitle: "Unlock the Ultimate SEO Pro Report",
-                premiumDesc: "You're only seeing 5% of the data. Our elite analysis tools have mapped over <strong>35 critical ranking factors</strong> (Canonical tags, Schema Markup, Open Graph, keyword matrix, and UX conversion bottlenecks).<br><br><span class='text-premium font-semibold'>Get the definitive PDF blueprint to instantly outrank competitors and multiply sales for just $9.</span>",
+                heroSub: "Enter any URL to instantly reverse-engineer its technical architecture, HTML hierarchy, and sales performance indicators.",
+                btnAnalyze: "Run Deep Audit",
+                analyzing: "Initializing Proxy Waterfall & parsing DOM structure...",
+                waterfallInit: "Initializing Enterprise Proxy Waterfall...",
+                waterfallNext: "Bypassing WAF/Cloudflare security... Node",
+                freeTitle: "Comprehensive Audit Metrics",
+                btnPdf: "Download Free Report (PDF)",
+                premiumTitle: "Unlock the Ultimate SEO Pro Blueprint",
+                premiumDesc: "You have unlocked the basic surface scan (5% of total capability). Our elite intelligence core has mapped <strong>35 advanced conversion and ranking vectors</strong>.<br><br><span class='text-emerald-400 font-bold'>Get the definitive enterprise-grade PDF report and 10x your organic revenue today for just $9.00 USD.</span>",
                 labelName: "Full Name",
                 labelEmail: "Professional Email",
-                btnPay: "Unlock Full Report - $9.00",
-                securePay: "256-bit Secure SSL Checkout",
-                footer: "© 2026 SEOPro Auditor. Created by elite digital strategists.",
-                msgProcessing: "Redirecting to secure payment gateway...",
-                msgWafError: "Analysis failed. Severe WAF protection detected or site does not exist.",
-                msgPdf: "Generating PDF...",
-                statusGood: "GOOD",
-                statusWarn: "WARN",
-                statusError: "ERROR",
+                btnPay: "Unlock Full Enterprise Report - $9.00",
+                securePay: "Visa, Mastercard & Apple Pay • 256-bit Secure SSL Checkout",
+                footer: "© 2026 SEOPro Elite Agency. All rights reserved.",
+                msgProcessing: "Redirecting to secure global payment gateway...",
+                msgWafError: "Analysis failed. Strict firewall protection blocked client request. Please verify the URL.",
+                msgPdf: "Generating professional PDF report...",
+                statusGood: "OPTIMIZED",
+                statusWarn: "ATTENTION",
+                statusError: "CRITICAL",
                 statusMissing: "MISSING",
-                placeholderUrl: "yourdomain.com",
-                placeholderName: "John Doe",
-                placeholderEmail: "john@company.com"
+                placeholderUrl: "modojapon.com",
+                placeholderName: "Alexander Wright",
+                placeholderEmail: "alex@company.com"
             },
             es: {
+                badge: "Motor de DOM e Inteligencia de Conversión",
                 heroTitle: "Auditor SEO On-Page Profundo",
-                heroSub: "Ingresa cualquier URL para aplicar ingeniería inversa a sus etiquetas, encabezados y métricas clave. Análisis de grado profesional en segundos.",
-                btnAnalyze: "Analizar URL",
-                analyzing: "Extrayendo DOM y evaluando métricas...",
-                waterfallInit: "Iniciando Cascada de Proxies...",
-                waterfallNext: "Evadiendo firewall... Intentando proxy",
-                freeTitle: "Resultados Básicos",
-                btnPdf: "Descargar PDF Básico",
-                premiumTitle: "Desbloquea el Informe SEO Pro Definitivo",
-                premiumDesc: "Solo estás viendo el 5% de los datos. Nuestras herramientas han mapeado <strong>35 factores críticos</strong> (Canonical, Schema, Open Graph, matriz de keywords y cuellos de botella UX).<br><br><span class='text-premium font-semibold'>Obtén el mapa exacto para superar a tu competencia y multiplicar tus ventas por solo $9.</span>",
+                heroSub: "Ingresa cualquier URL para realizar ingeniería inversa a su arquitectura técnica, jerarquía HTML e indicadores de conversión.",
+                btnAnalyze: "Ejecutar Auditoría",
+                analyzing: "Iniciando Cascada de Proxies y analizando DOM...",
+                waterfallInit: "Inicializando Cascada de Proxies Empresarial...",
+                waterfallNext: "Evadiendo seguridad WAF/Cloudflare... Nodo",
+                freeTitle: "Métricas de Auditoría Completa",
+                btnPdf: "Descargar Reporte Gratis (PDF)",
+                premiumTitle: "Desbloquea el Blueprint SEO Definitivo",
+                premiumDesc: "Has desbloqueado el análisis básico (5% de capacidad). Nuestra inteligencia ha mapeado <strong>35 vectores avanzados de conversión y ranking</strong>.<br><br><span class='text-emerald-400 font-bold'>Obtén el reporte PDF de nivel empresarial y multiplica tus ingresos orgánicos por solo $9.00 USD.</span>",
                 labelName: "Nombre Completo",
                 labelEmail: "Correo Profesional",
-                btnPay: "Desbloquear Informe - $9.00",
-                securePay: "Pago Seguro SSL 256-bit",
-                footer: "© 2026 SEOPro Auditor. Creado por estrategas digitales de élite.",
-                msgProcessing: "Redirigiendo a la pasarela de pago segura...",
-                msgWafError: "Análisis fallido. Protección WAF severa detectada o el sitio no existe.",
-                msgPdf: "Generando PDF...",
+                btnPay: "Desbloquear Reporte Pro - $9.00",
+                securePay: "Visa, Mastercard y Apple Pay • Pago Seguro SSL 256-bit",
+                footer: "© 2026 SEOPro Elite Agency. Todos los derechos reservados.",
+                msgProcessing: "Redirigiendo a la pasarela de pagos segura...",
+                msgWafError: "El análisis falló. Protección de firewall estricta bloqueó la solicitud. Verifica el enlace.",
+                msgPdf: "Generando reporte PDF profesional...",
                 statusGood: "ÓPTIMO",
                 statusWarn: "ALERTA",
-                statusError: "ERROR",
+                statusError: "CRÍTICO",
                 statusMissing: "FALTA",
-                placeholderUrl: "midominio.com",
-                placeholderName: "Juan Pérez",
-                placeholderEmail: "juan@empresa.com"
+                placeholderUrl: "modojapon.com",
+                placeholderName: "Alejandro Pérez",
+                placeholderEmail: "alejandro@empresa.com"
             },
             fr: {
+                badge: "Moteur DOM et Conversion Propulsé par IA",
                 heroTitle: "Auditeur SEO On-Page Approfondi",
-                heroSub: "Entrez n'importe quelle URL pour rétro-concevoir instantanément ses balises meta, en-têtes et métriques. Analyse professionnelle en quelques secondes.",
-                btnAnalyze: "Analyser l'URL",
-                analyzing: "Extraction du DOM et évaluation...",
+                heroSub: "Entrez n'importe quelle URL pour rétro-concevoir son architecture technique, sa hiérarchie HTML et ses indicateurs de vente.",
+                btnAnalyze: "Lancer l'Audit",
+                analyzing: "Initialisation du proxy et analyse du DOM...",
                 waterfallInit: "Initialisation de la cascade de proxy...",
-                waterfallNext: "Contournement du pare-feu... Essai proxy",
-                freeTitle: "Résultats de l'Audit de Base",
-                btnPdf: "Sauvegarder le PDF de Base",
-                premiumTitle: "Débloquez le Rapport SEO Pro Ultime",
-                premiumDesc: "Vous ne voyez que 5 % des données. Nos outils ont cartographié <strong>35 facteurs de classement critiques</strong>.<br><br><span class='text-premium font-semibold'>Obtenez le plan d'action définitif pour dominer vos concurrents pour seulement 9 $.</span>",
+                waterfallNext: "Contournement pare-feu WAF... Nœud",
+                freeTitle: "Métriques d'Audit Globales",
+                btnPdf: "Télécharger le Rapport Gratuit (PDF)",
+                premiumTitle: "Débloquez le Blueprint SEO Ultime",
+                premiumDesc: "Vous avez débloqué l'analyse de base (5% de la capacité). Notre intelligence a cartographié <strong>35 vecteurs de conversion avancés</strong>.<br><br><span class='text-emerald-400 font-bold'>Obtenez le rapport PDF professionnel pour seulement 9,00 $ USD.</span>",
                 labelName: "Nom Complet",
                 labelEmail: "Email Professionnel",
-                btnPay: "Débloquer le Rapport - 9,00 $",
-                securePay: "Paiement Sécurisé SSL 256 bits",
-                footer: "© 2026 SEOPro Auditor. Créé par l'élite numérique.",
+                btnPay: "Débloquer le Rapport Pro - 9,00 $",
+                securePay: "Visa, Mastercard • Paiement Sécurisé SSL",
+                footer: "© 2026 SEOPro Elite Agency. Tous droits réservés.",
                 msgProcessing: "Redirection vers la passerelle de paiement...",
-                msgWafError: "Échec. Protection WAF sévère détectée ou site inexistant.",
-                msgPdf: "Génération du PDF...",
-                statusGood: "BON",
+                msgWafError: "Échec de l'analyse. Protection de pare-feu stricte détectée.",
+                msgPdf: "Génération du rapport PDF...",
+                statusGood: "OPTIMISÉ",
                 statusWarn: "ATTENTION",
-                statusError: "ERREUR",
+                statusError: "CRITIQUE",
                 statusMissing: "ABSENT",
-                placeholderUrl: "votredomaine.fr",
+                placeholderUrl: "modojapon.com",
                 placeholderName: "Jean Dupont",
                 placeholderEmail: "jean@entreprise.fr"
             },
             de: {
+                badge: "KI-gestützte DOM- & Konversions-Engine",
                 heroTitle: "Tiefgehender On-Page SEO Auditor",
-                heroSub: "Geben Sie eine URL ein, um Meta-Tags, Überschriften und Kernmetriken sofort zu analysieren. Professionelle Analyse in Sekunden.",
-                btnAnalyze: "URL Analysieren",
-                analyzing: "DOM wird extrahiert und Metriken bewertet...",
-                waterfallInit: "Proxy-Wasserfall wird initialisiert...",
-                waterfallNext: "Firewall wird umgangen... Proxy versuchen",
-                freeTitle: "Basis-Audit Ergebnisse",
-                btnPdf: "Basis-PDF Speichern",
-                premiumTitle: "Schalten Sie den ultimativen SEO Pro Bericht frei",
-                premiumDesc: "Sie sehen nur 5% der Daten. Unsere Tools haben <strong>35 kritische Ranking-Faktoren</strong> kartiert.<br><br><span class='text-premium font-semibold'>Holen Sie sich den ultimativen PDF-Bauplan, um Ihre Konkurrenz für nur 9 $ zu übertreffen.</span>",
+                heroSub: "Geben Sie eine beliebige URL ein, um technische Architektur und Konversionsindikatoren zu analysieren.",
+                btnAnalyze: "Audit Starten",
+                analyzing: "Initialisiere Proxy-Kaskade & parse DOM...",
+                waterfallInit: "Initialisiere Enterprise Proxy-Kaskade...",
+                waterfallNext: "Umgehe WAF/Cloudflare Schutz... Knoten",
+                freeTitle: "Umfassende Audit-Metriken",
+                btnPdf: "Kostenlosen Bericht herunterladen (PDF)",
+                premiumTitle: "Schalten Sie den ultimativen SEO Pro Blueprint frei",
+                premiumDesc: "Sie haben den Basis-Scan freigeschaltet. Unsere Intelligenz hat <strong>35 erweiterte Ranking-Vektoren</strong> kartiert.<br><br><span class='text-emerald-400 font-bold'>Holen Sie sich den Enterprise-PDF-Bericht für nur 9,00 $ USD.</span>",
                 labelName: "Vollständiger Name",
                 labelEmail: "Geschäftliche E-Mail",
-                btnPay: "Vollständigen Bericht Freischalten - 9,00 $",
-                securePay: "Sichere 256-Bit SSL-Kasse",
-                footer: "© 2026 SEOPro Auditor. Erstellt von Elite-Digitalstrategen.",
+                btnPay: "Enterprise-Bericht Freischalten - $9.00",
+                securePay: "Visa, Mastercard • 256-Bit SSL Checkout",
+                footer: "© 2026 SEOPro Elite Agency. Alle Rechte vorbehalten.",
                 msgProcessing: "Weiterleitung zum sicheren Zahlungsgateway...",
-                msgWafError: "Analyse fehlgeschlagen. Strenge WAF-Schutzmaßnahmen oder Seite existiert nicht.",
-                msgPdf: "PDF wird generiert...",
-                statusGood: "GUT",
-                statusWarn: "WARNUNG",
-                statusError: "FEHLER",
+                msgWafError: "Analyse fehlgeschlagen. Strenge Firewall-Sicherheit blockierte die Anfrage.",
+                msgPdf: "Generiere professionellen PDF-Bericht...",
+                statusGood: "OPTIMIERT",
+                statusWarn: "ACHTUNG",
+                statusError: "KRITISCH",
                 statusMissing: "FEHLT",
-                placeholderUrl: "ihredomain.de",
+                placeholderUrl: "modojapon.com",
                 placeholderName: "Max Mustermann",
                 placeholderEmail: "max@firma.de"
             },
             it: {
-                heroTitle: "Auditor SEO On-Page Profondo",
-                heroSub: "Inserisci qualsiasi URL per decodificare istantaneamente meta tag, intestazioni e metriche. Analisi professionale in pochi secondi.",
-                btnAnalyze: "Analizza URL",
-                analyzing: "Estrazione del DOM e valutazione delle metriche...",
-                waterfallInit: "Inizializzazione Cascata Proxy...",
-                waterfallNext: "Elusione firewall... Prova proxy",
-                freeTitle: "Risultati Audit di Base",
-                btnPdf: "Salva PDF di Base",
-                premiumTitle: "Sblocca il Rapporto SEO Pro Definitivo",
-                premiumDesc: "Stai vedendo solo il 5% dei dati. I nostri strumenti hanno mappato <strong>35 fattori di ranking critici</strong>.<br><br><span class='text-premium font-semibold'>Ottieni il progetto PDF definitivo per superare la concorrenza a soli 9 $.</span>",
+                badge: "Motore DOM e Conversione basato su IA",
+                heroTitle: "Auditor SEO On-Page Avanzato",
+                heroSub: "Inserisci qualsiasi URL per analizzare l'architettura tecnica, la gerarchia HTML e gli indicatori di vendita.",
+                btnAnalyze: "Esegui Audit",
+                analyzing: "Inizializzazione cascata proxy e analisi DOM...",
+                waterfallInit: "Inizializzazione cascata proxy aziendale...",
+                waterfallNext: "Elusione protezione WAF... Nodo",
+                freeTitle: "Metriche di Audit Complete",
+                btnPdf: "Scarica Report Gratuito (PDF)",
+                premiumTitle: "Sblocca il Blueprint SEO Definitivo",
+                premiumDesc: "Hai sbloccato la scansione di base (5% della capacità). La nostra intelligenza ha mappato <strong>35 vettori avanzati</strong>.<br><br><span class='text-emerald-400 font-bold'>Ottieni il report PDF aziendale per soli $9.00 USD.</span>",
                 labelName: "Nome Completo",
                 labelEmail: "Email Professionale",
-                btnPay: "Sblocca Rapporto Completo - $9.00",
-                securePay: "Pagamento Sicuro SSL 256-bit",
-                footer: "© 2026 SEOPro Auditor. Creato da strateghi digitali d'élite.",
+                btnPay: "Sblocca Report Completo - $9.00",
+                securePay: "Visa, Mastercard • Checkout Sicuro SSL",
+                footer: "© 2026 SEOPro Elite Agency. Tutti i diritti riservati.",
                 msgProcessing: "Reindirizzamento al gateway di pagamento sicuro...",
-                msgWafError: "Analisi fallita. Rilevata protezione WAF severa o sito inesistente.",
-                msgPdf: "Generazione PDF...",
-                statusGood: "OTTIMO",
-                statusWarn: "AVVISO",
-                statusError: "ERRORE",
+                msgWafError: "Analisi fallita. Protezione firewall severa rilevata.",
+                msgPdf: "Generazione report PDF professionale...",
+                statusGood: "OTTIMIZZATO",
+                statusWarn: "ATTENZIONE",
+                statusError: "CRITICO",
                 statusMissing: "MANCANTE",
-                placeholderUrl: "iltuodominio.it",
+                placeholderUrl: "modojapon.com",
                 placeholderName: "Mario Rossi",
                 placeholderEmail: "mario@azienda.it"
             },
             pt: {
+                badge: "Motor de DOM e Conversão com IA",
                 heroTitle: "Auditor SEO On-Page Profundo",
-                heroSub: "Insira qualquer URL para fazer engenharia reversa instantânea de suas meta tags, títulos e métricas. Análise profissional em segundos.",
-                btnAnalyze: "Analisar URL",
-                analyzing: "Extraindo DOM e avaliando métricas...",
-                waterfallInit: "Inicializando Cascata de Proxy...",
-                waterfallNext: "Ignorando firewall... Tentando proxy",
-                freeTitle: "Resultados da Auditoria Básica",
-                btnPdf: "Salvar PDF Básico",
-                premiumTitle: "Desbloqueie o Relatório SEO Pro Definitivo",
-                premiumDesc: "Você está vendo apenas 5% dos dados. Nossas ferramentas mapearam <strong>35 fatores críticos de ranqueamento</strong>.<br><br><span class='text-premium font-semibold'>Obtenha o plano em PDF definitivo para superar seus concorrentes por apenas $9.</span>",
+                heroSub: "Insira qualquer URL para fazer engenharia reversa na arquitetura técnica e indicadores de conversão.",
+                btnAnalyze: "Executar Auditoria",
+                analyzing: "Inicializando cascata de proxies e analisando DOM...",
+                waterfallInit: "Inicializando cascata de proxies corporativa...",
+                waterfallNext: "Ignorando segurança WAF... Nó",
+                freeTitle: "Métricas de Auditoria Completa",
+                btnPdf: "Baixar Relatório Gratuito (PDF)",
+                premiumTitle: "Desbloqueie o Blueprint SEO Definitivo",
+                premiumDesc: "Você desbloqueou a verificação básica. Nossa inteligência mapeou <strong>35 vetores avançados de ranqueamento</strong>.<br><br><span class='text-emerald-400 font-bold'>Obtenha o relatório PDF corporativo por apenas $9.00 USD.</span>",
                 labelName: "Nome Completo",
                 labelEmail: "E-mail Profissional",
-                btnPay: "Desbloquear Relatório Completo - $9.00",
-                securePay: "Checkout Seguro SSL 256-bit",
-                footer: "© 2026 SEOPro Auditor. Criado por estrategistas digitais de elite.",
+                btnPay: "Desbloquear Relatório Pro - $9.00",
+                securePay: "Visa, Mastercard • Checkout Seguro SSL",
+                footer: "© 2026 SEOPro Elite Agency. Todos os direitos reservados.",
                 msgProcessing: "Redirecionando para o gateway de pagamento seguro...",
-                msgWafError: "Falha na análise. Proteção WAF severa detectada ou site inexistente.",
-                msgPdf: "Gerando PDF...",
-                statusGood: "BOM",
-                statusWarn: "AVISO",
-                statusError: "ERRO",
+                msgWafError: "Falha na análise. Proteção de firewall restrita bloqueou a solicitação.",
+                msgPdf: "Gerando relatório PDF profissional...",
+                statusGood: "OTIMIZADO",
+                statusWarn: "ATENÇÃO",
+                statusError: "CRÍTICO",
                 statusMissing: "FALTANDO",
-                placeholderUrl: "seudominio.com.br",
+                placeholderUrl: "modojapon.com",
                 placeholderName: "João Silva",
                 placeholderEmail: "joao@empresa.com.br"
             },
             ru: {
+                badge: "Модифицированный DOM и конверсионный движок",
                 heroTitle: "Глубокий On-Page SEO Аудитор",
-                heroSub: "Введите любой URL для мгновенного анализа метатегов, заголовков и ключевых метрик. Профессиональный анализ за секунды.",
-                btnAnalyze: "Анализировать URL",
-                analyzing: "Извлечение DOM и оценка метрик...",
-                waterfallInit: "Инициализация каскада прокси...",
-                waterfallNext: "Обход брандмауэра... Прокси",
-                freeTitle: "Базовые Результаты Аудита",
-                btnPdf: "Сохранить Базовый PDF",
-                premiumTitle: "Разблокируйте Полный SEO Pro Отчет",
-                premiumDesc: "Вы видите только 5% данных. Наши инструменты проанализировали <strong>35 критических факторов ранжирования</strong>.<br><br><span class='text-premium font-semibold'>Получите PDF-план, чтобы обойти конкурентов всего за 9 долларов.</span>",
+                heroSub: "Введите любой URL для обратного проектирования технической архитектуры и конверсионных показателей.",
+                btnAnalyze: "Запустить Аудит",
+                analyzing: "Инициализация каскада прокси и анализ DOM...",
+                waterfallInit: "Инициализация корпоративного каскада прокси...",
+                waterfallNext: "Обход защиты WAF/Cloudflare... Узел",
+                freeTitle: "Комплексные метрики аудита",
+                btnPdf: "Скачать бесплатный отчет (PDF)",
+                premiumTitle: "Разблокируйте ультимативный SEO Pro Blueprint",
+                premiumDesc: "Вы разблокировали базовый сканирующий модуль. Наш интеллект выявил <strong>35 продвинутых факторов ранжирования</strong>.<br><br><span class='text-emerald-400 font-bold'>Получите корпоративный PDF-отчет всего за $9.00 USD.</span>",
                 labelName: "Полное Имя",
                 labelEmail: "Рабочий Email",
-                btnPay: "Разблокировать Отчет - $9.00",
-                securePay: "Защищенная оплата 256-bit SSL",
-                footer: "© 2026 SEOPro Auditor. Создано элитными цифровыми стратегами.",
+                btnPay: "Разблокировать PRO Отчет - $9.00",
+                securePay: "Visa, Mastercard • Защищенный SSL-платеж",
+                footer: "© 2026 SEOPro Elite Agency. Все права защищены.",
                 msgProcessing: "Перенаправление на безопасный платежный шлюз...",
-                msgWafError: "Ошибка анализа. Обнаружена строгая защита WAF или сайт не существует.",
-                msgPdf: "Генерация PDF...",
-                statusGood: "ОТЛИЧНО",
+                msgWafError: "Ошибка анализа. Строгая защита брандмауэра заблокировала запрос.",
+                msgPdf: "Генерация профессионального PDF-отчета...",
+                statusGood: "ОПТИМИЗИРОВАНО",
                 statusWarn: "ВНИМАНИЕ",
-                statusError: "ОШИБКА",
+                statusError: "КРИТИЧЕСКИ",
                 statusMissing: "ОТСУТСТВУЕТ",
-                placeholderUrl: "vashdomen.ru",
+                placeholderUrl: "modojapon.com",
                 placeholderName: "Иван Иванов",
                 placeholderEmail: "ivan@kompaniya.ru"
             },
             zh: {
-                heroTitle: "深度页面 SEO 审核工具",
-                heroSub: "输入任何 URL 以立即对其元标签、标题和核心页面指标进行逆向工程。 几秒钟内完成专业级分析。",
-                btnAnalyze: "分析 URL",
-                analyzing: "提取 DOM 并评估指标...",
-                waterfallInit: "初始化代理瀑布流...",
-                waterfallNext: "绕过防火墙... 尝试代理",
-                freeTitle: "基础审核结果",
-                btnPdf: "保存基础 PDF",
-                premiumTitle: "解锁终极 SEO 专业报告",
-                premiumDesc: "您只看到了 5% 的数据。我们的精英分析工具已映射了 <strong>35 个关键排名因素</strong>。<br><br><span class='text-premium font-semibold'>仅需 9 美元即可获得权威的 PDF 蓝图，立即超越竞争对手。</span>",
+                badge: "AI 驱动的 DOM 与转化引擎",
+                heroTitle: "深度页面 SEO 专家审核",
+                heroSub: "输入任何网址，立即对其技术架构、HTML 层次结构和转化指标进行逆向工程。",
+                btnAnalyze: "运行深度审计",
+                analyzing: "初始化代理瀑布流并解析 DOM...",
+                waterfallInit: "正在初始化企业级代理瀑布流...",
+                waterfallNext: "绕过 WAF/Cloudflare 安全防火墙... 节点",
+                freeTitle: "综合审计指标",
+                btnPdf: "下载免费报告 (PDF)",
+                premiumTitle: "解锁终极 SEO 专业蓝图",
+                premiumDesc: "您已解锁基础表面扫描（占总能力的 5%）。我们的精英核心已映射 <strong>35 个高级转化与排名向量</strong>。<br><br><span class='text-emerald-400 font-bold'>仅需 $9.00 美元即可获得企业级 PDF 报告并成倍提升有机收入。</span>",
                 labelName: "全名",
                 labelEmail: "工作邮箱",
-                btnPay: "解锁完整报告 - $9.00",
-                securePay: "256位 SSL 安全结账",
-                footer: "© 2026 SEOPro Auditor. 由精英数字战略家创建。",
-                msgProcessing: "重定向至安全支付网关...",
-                msgWafError: "分析失败。检测到严密的 WAF 保护或网站不存在。",
-                msgPdf: "正在生成 PDF...",
-                statusGood: "良好",
-                statusWarn: "警告",
-                statusError: "错误",
+                btnPay: "解锁完整企业报告 - $9.00",
+                securePay: "Visa, Mastercard • 256位安全 SSL 结算",
+                footer: "© 2026 SEOPro Elite Agency. 保留所有权利。",
+                msgProcessing: "正在重定向至全球安全支付网关...",
+                msgWafError: "分析失败。严格的防火墙保护阻止了客户端请求，请检查网址。",
+                msgPdf: "正在生成专业 PDF 报告...",
+                statusGood: "极佳",
+                statusWarn: "注意",
+                statusError: "严重",
                 statusMissing: "缺失",
-                placeholderUrl: "nindeyuming.com",
+                placeholderUrl: "modojapon.com",
                 placeholderName: "张三",
                 placeholderEmail: "zhangsan@gongsi.com"
             }
@@ -555,19 +611,20 @@
         function updateTexts(lang) {
             currentLang = lang;
             const t = i18n[lang];
+            document.getElementById('t-badge').innerHTML = `<i class="ph ph-lightning text-sm"></i> ${t.badge}`;
             document.getElementById('t-hero-title').innerHTML = t.heroTitle;
             document.getElementById('t-hero-sub').innerHTML = t.heroSub;
             document.getElementById('t-btn-analyze').innerText = t.btnAnalyze;
             document.getElementById('t-analyzing').innerText = t.analyzing;
-            document.getElementById('t-free-title').innerHTML = `<i class="ph ph-check-circle text-green-400"></i> ${t.freeTitle}`;
+            document.getElementById('t-free-title').innerHTML = `<i class="ph ph-shield-check text-emerald-400 text-2xl"></i> ${t.freeTitle}`;
             document.getElementById('t-btn-pdf').innerText = t.btnPdf;
             document.getElementById('t-premium-title').innerText = t.premiumTitle;
             document.getElementById('t-premium-desc').innerHTML = t.premiumDesc;
             document.getElementById('t-label-name').innerText = t.labelName;
             document.getElementById('t-label-email').innerText = t.labelEmail;
             document.getElementById('t-btn-pay').innerHTML = `<i class="ph ph-credit-card text-xl"></i><span>${t.btnPay}</span>`;
-            document.getElementById('t-secure-pay').innerHTML = `<i class="ph ph-lock-key"></i> ${t.securePay}`;
-            document.getElementById('t-footer').innerHTML = t.footer;
+            document.getElementById('t-secure-pay').innerText = t.securePay;
+            document.getElementById('t-footer').innerText = t.footer;
             
             document.getElementById('url-input').placeholder = t.placeholderUrl;
             document.getElementById('cust-name').placeholder = t.placeholderName;
@@ -583,24 +640,28 @@
             const box = document.getElementById('message-box');
             const msgText = document.getElementById('msg-text');
             const icon = document.getElementById('msg-icon');
+            const wrapper = document.getElementById('msg-icon-wrapper');
             
             msgText.innerText = text;
-            box.className = 'fixed top-5 left-1/2 transform -translate-x-1/2 z-50 glass-panel rounded-lg px-6 py-3 flex items-center gap-3 transition opacity-100 translate-y-0';
+            box.className = 'fixed top-6 left-1/2 transform -translate-x-1/2 z-50 glass-panel rounded-xl px-6 py-4 flex items-center gap-3 border shadow-2xl transition duration-300';
             
             if(type === 'error') {
-                box.classList.add('border-red-500/50');
-                icon.className = 'ph ph-warning-circle text-2xl text-red-500';
+                box.classList.add('border-rose-500/40', 'bg-rose-950/40');
+                wrapper.className = 'w-8 h-8 rounded-lg bg-rose-500/20 flex items-center justify-center text-rose-400';
+                icon.className = 'ph ph-warning-circle text-xl';
             } else if (type === 'success') {
-                box.classList.add('border-green-500/50');
-                icon.className = 'ph ph-check-circle text-2xl text-green-500';
+                box.classList.add('border-emerald-500/40', 'bg-emerald-950/40');
+                wrapper.className = 'w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center text-emerald-400';
+                icon.className = 'ph ph-check-circle text-xl';
             } else {
-                box.classList.add('border-blue-500/50');
-                icon.className = 'ph ph-info text-2xl text-blue-400';
+                box.classList.add('border-emerald-500/30', 'bg-slate-900/90');
+                wrapper.className = 'w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center text-emerald-400';
+                icon.className = 'ph ph-info text-xl';
             }
 
             setTimeout(() => {
                 box.classList.add('hidden-msg');
-            }, 4500);
+            }, 5000);
         }
 
         // --- 3. URL Logic & PROXY WATERFALL ---
@@ -617,12 +678,13 @@
             const t = i18n[currentLang];
             statusText.innerText = t.waterfallInit;
 
-            // Proxy Waterfall Definition
+            // Enterprise Proxy Waterfall with 5 high-availability fallback nodes
             const proxies = [
                 { type: 'raw', url: (u) => `https://corsproxy.io/?${encodeURIComponent(u)}` },
                 { type: 'json', url: (u) => `https://api.allorigins.win/get?url=${encodeURIComponent(u)}` },
                 { type: 'raw', url: (u) => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(u)}` },
-                { type: 'raw', url: (u) => `https://api.cors.lol/?url=${encodeURIComponent(u)}` }
+                { type: 'raw', url: (u) => `https://api.cors.lol/?url=${encodeURIComponent(u)}` },
+                { type: 'json', url: (u) => `https://thingproxy.freeboard.io/fetch/${u}` }
             ];
 
             for (let i = 0; i < proxies.length; i++) {
@@ -634,28 +696,27 @@
                     
                     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                     
+                    let html = '';
                     if (proxy.type === 'json') {
                         const data = await response.json();
-                        if (!data.contents) throw new Error('No contents in JSON');
-                        return data.contents;
+                        html = data.contents || data.body || '';
                     } else {
-                        const html = await response.text();
-                        // Basic validation to ensure we didn't just get a proxy error page
-                        if (!html || html.trim() === '' || html.includes('Origin not allowed') || html.includes('Ray ID:')) {
-                            throw new Error('Invalid raw HTML response or WAF block');
-                        }
-                        return html;
+                        html = await response.text();
                     }
+
+                    if (!html || html.trim() === '' || html.includes('Origin not allowed') || html.includes('Ray ID:') && html.length < 500) {
+                        throw new Error('Invalid raw HTML or security challenge triggered');
+                    }
+                    return html;
                 } catch (error) {
-                    console.warn(`Proxy ${i + 1} failed:`, error.message);
-                    // continue to the next proxy in the waterfall
+                    console.warn(`Proxy node ${i + 1} encountered resistance:`, error.message);
                 }
             }
             
-            throw new Error('All proxies failed.');
+            throw new Error('All proxy nodes exhausted.');
         }
 
-        // --- 4. Deep DOM Analysis ---
+        // --- 4. Deep DOM Analysis & Scientific Scoring ---
         function analyzeDOM(htmlString) {
             const parser = new DOMParser();
             const doc = parser.parseFromString(htmlString, 'text/html');
@@ -685,12 +746,22 @@
 
             // 4. Word Count Approximation
             const bodyClone = doc.body ? doc.body.cloneNode(true) : doc.createElement('body');
-            const removeTags = bodyClone.querySelectorAll('script, style, noscript, svg, nav, footer');
+            const removeTags = bodyClone.querySelectorAll('script, style, noscript, svg, nav, footer, header');
             removeTags.forEach(el => el.remove());
             
             const textContent = bodyClone.innerText || '';
             const words = textContent.replace(/\s+/g, ' ').trim().split(' ').filter(word => word.length > 1);
             const wordCount = words.length;
+
+            // 5. Scientific SEO Score Calculation (0-100)
+            let score = 100;
+            if (!title || title.length < 30 || title.length > 70) score -= 20;
+            if (!description || description.length < 100 || description.length > 170) score -= 20;
+            if (h1s.length !== 1) score -= 20;
+            if (h2sCount === 0) score -= 15;
+            if (images.length > 0 && imgMissingAlt > 0) score -= 15;
+            if (wordCount < 400) score -= 10;
+            score = Math.max(25, score);
 
             return { 
                 title, 
@@ -699,29 +770,27 @@
                 h2sCount, 
                 totalImages: images.length, 
                 imgMissingAlt, 
-                wordCount 
+                wordCount,
+                score 
             };
         }
 
         // --- 5. UI Rendering & Badge Logic ---
         function getStatusBadge(length, min, max, isMissing) {
             const t = i18n[currentLang];
-            if (isMissing) return `<span class="bg-red-900/50 text-red-300 px-2 py-1 rounded text-xs font-bold border border-red-500/30">${t.statusMissing}</span>`;
+            if (isMissing) return `<span class="bg-rose-950/80 text-rose-300 border border-rose-500/30 px-2.5 py-1 rounded-lg text-xs font-extrabold">${t.statusMissing}</span>`;
             if (length >= min && length <= max) {
-                return `<span class="bg-green-900/50 text-green-300 px-2 py-1 rounded text-xs font-bold border border-green-500/30">${t.statusGood}</span>`;
+                return `<span class="bg-emerald-950/80 text-emerald-300 border border-emerald-500/30 px-2.5 py-1 rounded-lg text-xs font-extrabold">${t.statusGood}</span>`;
             }
-            if (length > max) {
-                return `<span class="bg-yellow-900/50 text-yellow-300 px-2 py-1 rounded text-xs font-bold border border-yellow-500/30">${t.statusWarn} (Too Long)</span>`;
-            }
-            return `<span class="bg-yellow-900/50 text-yellow-300 px-2 py-1 rounded text-xs font-bold border border-yellow-500/30">${t.statusWarn} (Too Short)</span>`;
+            return `<span class="bg-amber-950/80 text-amber-300 border border-amber-500/30 px-2.5 py-1 rounded-lg text-xs font-extrabold">${t.statusWarn}</span>`;
         }
 
-        function getGenericBadge(condition, goodText = "GOOD", badText = "WARN") {
+        function getGenericBadge(condition) {
             const t = i18n[currentLang];
             if (condition) {
-                return `<span class="bg-green-900/50 text-green-300 px-2 py-1 rounded text-xs font-bold border border-green-500/30">${t.statusGood || goodText}</span>`;
+                return `<span class="bg-emerald-950/80 text-emerald-300 border border-emerald-500/30 px-2.5 py-1 rounded-lg text-xs font-extrabold">${t.statusGood}</span>`;
             }
-            return `<span class="bg-yellow-900/50 text-yellow-300 px-2 py-1 rounded text-xs font-bold border border-yellow-500/30">${t.statusWarn || badText}</span>`;
+            return `<span class="bg-amber-950/80 text-amber-300 border border-amber-500/30 px-2.5 py-1 rounded-lg text-xs font-extrabold">${t.statusWarn}</span>`;
         }
 
         document.getElementById('audit-form').addEventListener('submit', async (e) => {
@@ -746,18 +815,19 @@
 
                 // Populate UI
                 document.getElementById('res-url').innerText = url;
+                document.getElementById('res-score').innerText = data.score;
                 
                 // Title
                 document.getElementById('res-title').innerText = data.title || '[No Title Tag Found]';
-                document.getElementById('res-title').className = data.title ? "text-white text-lg font-medium break-words mb-2" : "text-red-400 text-lg italic break-words mb-2";
+                document.getElementById('res-title').className = data.title ? "text-white text-base font-semibold break-words mb-3" : "text-rose-400 text-base italic break-words mb-3";
                 document.getElementById('res-title-len').innerText = data.title.length;
-                document.getElementById('title-status').innerHTML = getStatusBadge(data.title.length, 40, 65, !data.title);
+                document.getElementById('title-status').innerHTML = getStatusBadge(data.title.length, 30, 70, !data.title);
 
                 // Description
                 document.getElementById('res-desc').innerText = data.description || '[No Meta Description Found]';
-                document.getElementById('res-desc').className = data.description ? "text-white text-md break-words mb-2" : "text-red-400 text-md italic break-words mb-2";
+                document.getElementById('res-desc').className = data.description ? "text-white text-sm break-words mb-3 leading-relaxed" : "text-rose-400 text-sm italic break-words mb-3";
                 document.getElementById('res-desc-len').innerText = data.description.length;
-                document.getElementById('desc-status').innerHTML = getStatusBadge(data.description.length, 120, 160, !data.description);
+                document.getElementById('desc-status').innerHTML = getStatusBadge(data.description.length, 100, 170, !data.description);
 
                 // H1s
                 const h1List = document.getElementById('res-h1-list');
@@ -765,12 +835,12 @@
                 document.getElementById('res-h1-count').innerText = data.h1s.length;
                 
                 if(data.h1s.length === 1) {
-                    document.getElementById('h1-status').innerHTML = `<span class="bg-green-900/50 text-green-300 px-2 py-1 rounded text-xs font-bold border border-green-500/30">${t.statusGood}</span>`;
+                    document.getElementById('h1-status').innerHTML = `<span class="bg-emerald-950/80 text-emerald-300 border border-emerald-500/30 px-2.5 py-1 rounded-lg text-xs font-extrabold">${t.statusGood}</span>`;
                 } else if (data.h1s.length === 0) {
-                    document.getElementById('h1-status').innerHTML = `<span class="bg-red-900/50 text-red-300 px-2 py-1 rounded text-xs font-bold border border-red-500/30">${t.statusMissing}</span>`;
-                    h1List.innerHTML = `<li class="text-red-400 italic">No H1 tags found.</li>`;
+                    document.getElementById('h1-status').innerHTML = `<span class="bg-rose-950/80 text-rose-300 border border-rose-500/30 px-2.5 py-1 rounded-lg text-xs font-extrabold">${t.statusMissing}</span>`;
+                    h1List.innerHTML = `<li class="text-rose-400 italic">No H1 tags found in DOM.</li>`;
                 } else {
-                    document.getElementById('h1-status').innerHTML = `<span class="bg-yellow-900/50 text-yellow-300 px-2 py-1 rounded text-xs font-bold border border-yellow-500/30">${t.statusWarn} (Multiple H1s)</span>`;
+                    document.getElementById('h1-status').innerHTML = `<span class="bg-amber-950/80 text-amber-300 border border-amber-500/30 px-2.5 py-1 rounded-lg text-xs font-extrabold">Multiple H1s</span>`;
                 }
 
                 if (data.h1s.length > 0) {
@@ -792,7 +862,7 @@
 
                 // Word Count
                 document.getElementById('res-word-count').innerText = data.wordCount.toLocaleString();
-                document.getElementById('word-status').innerHTML = getGenericBadge(data.wordCount > 300);
+                document.getElementById('word-status').innerHTML = getGenericBadge(data.wordCount > 400);
 
                 // Show Results
                 results.classList.remove('hidden');
@@ -803,13 +873,12 @@
                 }, 100);
 
             } catch (error) {
-                console.error("Waterfall Error:", error);
+                console.error("Enterprise Waterfall Error:", error);
                 showMessage(i18n[currentLang].msgWafError, 'error');
             } finally {
                 btn.disabled = false;
                 btn.classList.remove('opacity-50', 'cursor-not-allowed');
                 loading.classList.add('hidden');
-                document.getElementById('t-analyzing').innerText = i18n[currentLang].analyzing; // Reset text
             }
         });
 
@@ -818,20 +887,15 @@
             showMessage(i18n[currentLang].msgPdf, 'info');
             const element = document.getElementById('free-report-pdf');
             
-            // Temporary background for html2pdf
-            element.style.backgroundColor = '#111827'; 
-            
             const opt = {
                 margin:       0.4,
-                filename:     'SEO_Audit_Report.pdf',
+                filename:     'SEOPro_Enterprise_Audit.pdf',
                 image:        { type: 'jpeg', quality: 0.98 },
                 html2canvas:  { scale: 2, useCORS: true, logging: false },
                 jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
             };
 
-            html2pdf().set(opt).from(element).save().then(() => {
-                element.style.backgroundColor = ''; 
-            });
+            html2pdf().set(opt).from(element).save();
         });
 
         // --- 7. Payment Simulation ---
@@ -840,7 +904,7 @@
             const btn = document.getElementById('pay-btn');
             const originalContent = btn.innerHTML;
             
-            btn.innerHTML = `<div class="loader !border-black !border-t-white !w-5 !h-5"></div> <span>Processing...</span>`;
+            btn.innerHTML = `<div class="loader !border-slate-950 !border-t-white !w-5 !h-5"></div> <span>Processing Checkout...</span>`;
             btn.disabled = true;
             btn.classList.add('opacity-80', 'cursor-not-allowed');
 
@@ -850,8 +914,8 @@
                     btn.innerHTML = originalContent;
                     btn.disabled = false;
                     btn.classList.remove('opacity-80', 'cursor-not-allowed');
-                }, 2000);
-            }, 1500);
+                }, 2500);
+            }, 1800);
         });
 
         // Initialize language
@@ -862,7 +926,6 @@
         } else {
             updateTexts('en');
         }
-
     </script>
 </body>
 </html>
